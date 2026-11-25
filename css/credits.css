@@ -8,5 +8,5 @@
 .snd-credit { display: none; position: absolute; top: 100%; right: max(24px, env(safe-area-inset-right, 0px)); margin-top: 4px; padding: 2px 8px; border-radius: 6px; background: rgba(13, 13, 17, 0.72); color: #E2DED8; font-size: 12px; line-height: 1.4; text-decoration: none; }
 .snd-credit:hover, .snd-credit:focus-visible { text-decoration: underline; }
 .snd[aria-pressed="true"] ~ .snd-credit { display: block; }
-@media (max-width: 560px) { .bg-credit, .snd-credit { font-size: 11px; } .snd-credit { right: max(16px, env(safe-area-inset-right, 0px)); } }
+@media (max-width: 560px) { .bg-credit, .snd-credit { font-size: 11px; } .snd-credit { left: max(16px, env(safe-area-inset-left, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); width: fit-content; margin-left: auto; text-align: right; } }
 @media print { .snd-credit { display: none !important; } }
