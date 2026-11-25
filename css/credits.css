@@ -1,0 +1,12 @@
+/* Licence credits placed on the pictures and the music (November 25, 2026), from CREDITS.md.
+   The footer stays as Soji left it on November 21; each credit stands on its own picture instead.
+   .bg-credit: a small linked credit in the bottom right corner of a full-width background photo (the first screen, "Your office keeps the file").
+   .snd-credit: the music credit, shown under the header only while the quiet music plays.
+   What calls it: index.html, last stylesheet. */
+.bg-credit { position: absolute; right: 8px; bottom: 8px; z-index: 3; padding: 2px 8px; border-radius: 6px; background: rgba(13, 13, 17, 0.6); color: #E2DED8; font-size: 12px; line-height: 1.4; text-decoration: none; opacity: 0.8; }
+.bg-credit:hover, .bg-credit:focus-visible { opacity: 1; text-decoration: underline; }
+.snd-credit { display: none; position: absolute; top: 100%; right: max(24px, env(safe-area-inset-right, 0px)); margin-top: 4px; padding: 2px 8px; border-radius: 6px; background: rgba(13, 13, 17, 0.72); color: #E2DED8; font-size: 12px; line-height: 1.4; text-decoration: none; }
+.snd-credit:hover, .snd-credit:focus-visible { text-decoration: underline; }
+.snd[aria-pressed="true"] ~ .snd-credit { display: block; }
+@media (max-width: 560px) { .bg-credit, .snd-credit { font-size: 11px; } .snd-credit { right: max(16px, env(safe-area-inset-right, 0px)); } }
+@media print { .snd-credit { display: none !important; } }
