@@ -1,0 +1,145 @@
+/* Round five of the thin layer build (November 20, 2026): the closing block with every way to reach us, the
+   Transformation Advisory teaser, and the offer cards' stretched tap. Values are in design-system/prime-home-v6/MASTER.md,
+   "Round five". No colour is new: the surface, hairline and ink tokens of css/modern.css, the yellow only for the one
+   action of each view and the teaser's path.
+   What it reads: nothing outside this build. What calls it: index.html, after css/round4.css. With scripts off every
+   part stands in its final state (round seven: Reduce Motion no longer stills them; the glow is in css/round7.css). */
+
+/* ---------- one shared surface (piece 3) ---------- */
+.tile-s { background: var(--surface); border: 1px solid var(--hair); border-radius: var(--r-card); padding: 16px 18px; box-shadow: var(--inner), var(--soft); }
+
+/* ---------- the offer cards: a real button stretched over each card (no control inside a control) ---------- */
+.offer { position: relative; }
+.offer-tap { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; margin: 0; padding: 0; border: 0; border-radius: inherit; background: transparent; cursor: pointer; }
+.offer-tap:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
+.offer-more { position: relative; z-index: 2; align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; margin-top: 4px; font-size: 16px; font-weight: 600; color: #F5F3EF; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: rgba(245, 243, 239, 0.45); }
+.offer-more:hover { text-decoration-color: #F5F3EF; }
+.offer-more:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; border-radius: 4px; }
+
+/* ---------- the Transformation Advisory teaser ---------- */
+.advisory { background: #0D0D11; padding: 120px 0; }
+.adv-in { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.advisory h2 { margin: 0; }
+.adv-mask { display: inline-block; overflow: hidden; padding-bottom: 0.08em; vertical-align: bottom; }
+.adv-rise { display: inline-block; }
+.advisory.armed .adv-rise { transform: translateY(105%); }
+.advisory.armed.seen .adv-rise { transform: none; transition: transform 0.7s var(--ease-out); }
+.adv-pathbox { position: relative; width: 100%; max-width: 960px; margin: 36px 0 34px; }
+.adv-path { list-style: none; margin: 0; padding: 0 0 0 30px; display: grid; gap: 14px; text-align: left; }
+.adv-step { position: relative; display: flex; align-items: center; min-height: 64px; font-size: 17px; line-height: 1.4; color: #F5F3EF; }
+.adv-dot { position: absolute; left: -30px; top: 50%; width: 12px; height: 12px; margin-top: -6px; border-radius: 50%; background: var(--yellow); box-shadow: 0 0 0 4px #0D0D11; z-index: 1; }
+.adv-line { position: absolute; z-index: 0; background: var(--hair-strong); pointer-events: none; }
+.adv-fill { position: absolute; inset: 0; background: var(--yellow); transform-origin: 0 0; transform: scaleY(1); }
+.adv-line.across .adv-fill { transform: scaleX(1); }
+.advisory.armed .adv-step { opacity: 0; transform: translateY(10px); transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out); }
+.advisory.armed .adv-step.on { opacity: 1; transform: none; }
+.advisory.armed .adv-fill { transition: transform 0.5s var(--ease-out); }
+.adv-film { width: 100%; max-width: 640px; margin: 0 0 30px; }
+.adv-film-btn { position: relative; display: block; width: 100%; padding: 0; border: 1px solid var(--hair); border-radius: var(--r-card); overflow: hidden; background: #000; cursor: pointer; }
+.adv-film-btn img { display: block; width: 100%; height: auto; }
+.adv-wa { min-width: 260px; }
+/* pinned for one screen while its steps reveal (js/advisory.js adds .pin only when the whole stage fits the screen) */
+.advisory.pin { height: 180vh; height: 180svh; padding: 0; }
+.advisory.pin .adv-stage { position: sticky; top: 0; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; padding: 76px 0 24px; }
+.advisory.pin .adv-in { width: 100%; }
+@media (min-width: 900px) {
+  .adv-path { grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 30px 0 0; }
+  .adv-step { min-height: 92px; align-items: flex-start; }
+  .adv-dot { left: 24px; top: -30px; margin-top: 0; }
+}
+@media (max-width: 560px) { .advisory { padding: 84px 0; } .adv-wa { width: 100%; min-width: 0; } }
+
+/* ---------- the closing block: every way to reach us ---------- */
+.closing-in { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px; }
+.closing h2 { margin: 0; max-width: 18ch; }
+.channels { width: 100%; max-width: 960px; display: flex; flex-direction: column; gap: 14px; }
+.ch-main { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.ch-social { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.ch-social[hidden] { display: none; }
+.ch-tile { display: flex; align-items: center; gap: 14px; min-height: 64px; color: #F5F3EF; text-decoration: none; text-align: left; transition: border-color 0.2s, background-color 0.2s; }
+a.ch-tile:hover { border-color: var(--hair-strong); }
+a.ch-tile:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
+.ch-mark { width: 24px; height: 24px; flex: none; color: #F5F3EF; }
+.ch-txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.ch-txt b { font-size: 17px; font-weight: 600; line-height: 1.25; }
+.ch-d { font-size: 15px; line-height: 1.3; color: #B9B5AF; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.ch-pa { font-size: 15px; line-height: 1.3; color: #B9B5AF; }
+.ch-social .ch-tile { flex-direction: column; justify-content: center; gap: 8px; padding: 14px 8px; text-align: center; }
+.ch-social .ch-mark { width: 26px; height: 26px; }
+.ch-social .ch-txt { align-items: center; }
+.ch-social .ch-txt b { font-size: 15px; }
+.ch-soon { font-size: 14px; line-height: 1.3; color: #B9B5AF; }
+.ch-nomark .ch-txt b { font-size: 16px; }
+@media (min-width: 900px) {
+  .ch-main { grid-template-columns: repeat(3, 1fr); }
+  .ch-social { grid-template-columns: repeat(6, 1fr); }
+}
+
+/* the guidelines check (round5/wdg_run2.txt, one low item): "See how it works" lands the teaser clear of the fixed bar */
+#advisory { scroll-margin-top: 96px; }
+
+/* ---------- the quiet music button (round five, the peace drop-in, css/sound.css) sits in the header beside the
+   WhatsApp pill, not in a fixed corner: there it clears the WhatsApp pill, both trucks and every word of the page at 390
+   and 1440, since no page words reach the header. sound.css keeps its look; only its place changes here. ---------- */
+.nav .snd { position: relative; inset: auto; z-index: auto; flex: none; }
+@media (max-width: 1000px) { .nav-in .snd { margin-left: auto; } .nav-in .snd + .wa-pill { margin-left: 0; } }
+
+/* ---------- the fresh review of round five (November 20, 2026) ----------
+   Note 6, the lead's ruling: the warm light behind beat d is a smooth glow drawn by the browser, the same warmth as the
+   old Pixel FX god rays still (a 320 by 180 picture stretched across the screen, which read as blocks on a phone), with
+   no blocks and nothing pixel drawn. Its place, mask, blend and lighting moment stay as css/layer.css sets them. */
+.d-rays { image-rendering: auto; background:
+  radial-gradient(ellipse 75% 62% at 28% 0%, rgba(255, 226, 122, 0.42) 0%, rgba(246, 202, 24, 0.18) 38%, rgba(246, 202, 24, 0) 72%),
+  radial-gradient(ellipse 55% 48% at 74% 6%, rgba(255, 246, 210, 0.24) 0%, rgba(255, 246, 210, 0) 70%),
+  radial-gradient(ellipse 90% 40% at 50% 100%, rgba(246, 202, 24, 0.10) 0%, rgba(246, 202, 24, 0) 70%); }
+/* Note 3: on a phone the header is nearly solid, so no words read through behind the speaker or the WhatsApp pill */
+@media (max-width: 1000px) { .nav.solid { background: rgba(13, 13, 17, 0.92); } }
+/* Note 5, Impeccable polish: the channel tiles give a small press, as every other control on the page does */
+a.ch-tile { transition: border-color 0.2s, background-color 0.2s, transform 0.12s var(--ease-out); }
+a.ch-tile:active { transform: scale(0.98); }
+/* round seven (November 21, 2026, the owner: "this is not 2005, this is November 2026"): the reduced motion block here is removed; the page moves the same on every phone */
+
+/* ---------- the owner's corrections, November 20 evening (round5/PURPOSE_AUDIT.md) ----------
+   The red foot truck is on screen again below the first screen and drives from the bottom right to the left as the page
+   goes down (js/truck.js), facing the way it drives. It rides beneath the page's words: it sits under the content layer,
+   so any word, button or card that passes over the foot of the screen stays in front of it and readable. */
+.truck-ride { z-index: 15; } /* round five, the fresh check (round5/review6): in sight all the way, stepping aside only for controls (js/truck.js) */
+.truck-ride canvas { transform: scaleX(-1); }
+:where(main .wrap, main .area-row, .foot .wrap, .nav) { position: relative; z-index: 1; }
+/* The hero's clock comes down over the empty stretch of road, so the vehicles in the photo show; only as far as the
+   screen allows, so the clock and its four names always stay whole on the first screen. */
+.dial.crisp { top: clamp(0px, calc(100svh - 700px), 150px); }
+@media (min-width: 1001px) { .dial.crisp { top: clamp(0px, calc((100svh - 600px) / 2), 150px); } }
+/* The Fail line, smaller so it sits with the page and still lands with weight; it wraps on its own on a phone. */
+@media (min-width: 761px) { .still-line { font-size: clamp(44px, 4.6vw, 76px); } }
+@media (max-width: 760px) {
+  .still-line { font-size: min(10.8vw, 52px); line-height: 1.04; letter-spacing: -0.035em; }
+  .fl-l { display: inline; }
+}
+/* the teaser's pinned stage sits above the truck's layer too, so its words stay in front of the truck as it pins */
+.advisory .adv-stage { z-index: 1; }
+/* The closing words (round5/CLOSING_WORDS.md): the line under the heading, and the two flowing in once */
+.closing-line { margin: -12px 0 0; max-width: 34ch; font-size: 19px; line-height: 1.5; color: #E2DED8; text-wrap: pretty; }
+.closing.cl-armed .cl-flow { opacity: 0; transform: translateY(16px); transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out); }
+.closing.cl-armed.cl-in .cl-flow { opacity: 1; transform: none; }
+.closing.cl-armed .closing-line { transition-delay: 0.35s; }
+@media (max-width: 560px) { .closing-line { font-size: 18px; } }
+
+/* ---------- the owner's corrections, the next evening word ----------
+   The Fail line follows the story at the page's section spacing, with no empty screen above it. */
+.beat-c { min-height: 0; padding: 120px 0; }
+@media (max-width: 760px) { .beat-c { min-height: 0; padding: 84px 0; } }
+/* "inspect" in the contrast colour, the page's yellow, arriving letter by letter with a soft caret */
+.fl-insp { color: var(--yellow); }
+.fl-armed .fl-insp .fl-c { transition: opacity 0.16s ease-out; }
+.fl-armed .fl-insp .fl-c.cur { box-shadow: 0.06em 0 0 rgba(246, 202, 24, 0.55); }
+/* ---------- the lamps (js/lamps.js): warm light that comes on and settles, once per part, nothing blurred ---------- */
+@keyframes lampBox { 0% { filter: drop-shadow(0 0 0 rgba(246, 202, 24, 0)); } 30% { filter: drop-shadow(0 0 16px rgba(255, 226, 122, 0.55)); } 100% { filter: drop-shadow(0 0 7px rgba(246, 202, 24, 0.16)); } }
+@keyframes lampText { 0% { text-shadow: 0 0 0 rgba(246, 202, 24, 0); } 30% { text-shadow: 0 0 18px rgba(255, 226, 122, 0.6); } 100% { text-shadow: 0 0 10px rgba(246, 202, 24, 0.14); } }
+.lamp-box.lamp-on { animation: lampBox 2.1s cubic-bezier(0.16, 1, 0.3, 1) var(--lamp-d, 0s) both; }
+.lamp-text.lamp-on { animation: lampText 2.1s cubic-bezier(0.16, 1, 0.3, 1) var(--lamp-d, 0s) both; }
+/* the owner: no blur anywhere; cards and lines that reveal only fade and rise (css/modern.css .reveal had a blur) */
+.reveal { filter: none; }
+/* review 7: before the Fail line types, its letters wait faintly visible, so the space never reads as empty */
+.fl-armed .fl-c { opacity: 0.14; }
+.fl-armed .fl-c.in { opacity: 1; }

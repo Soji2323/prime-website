@@ -1,0 +1,195 @@
+/* Version two additions. Brief: 00_Knowledge/Growth/work/jobs/site_home_plan_Nov19/BRIEF.md.
+   The thin layer (pinned stage on desktop, three panels on a phone), the proof line, the pixel assembly of the four area
+   photos, five film cards, the services chips. Motion only where it explains something. Round seven (November 21, 2026): the same with Reduce Motion on. */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.proof { margin-top: 18px; font-size: 16px; color: #E9E5DF; border-left: 3px solid var(--yellow); padding-left: 12px; max-width: 40ch; text-shadow: 0 2px 16px rgba(13,13,17,0.8); }
+.h-small { font-size: clamp(26px, 3vw, 38px); }
+.mute-p { color: var(--mute); margin-top: 10px; }
+.how-intro { color: var(--mute); font-size: 19px; max-width: 58ch; margin: -32px 0 44px; }
+
+/* The thin layer: one pinned stage on desktop */
+.layer { background: #0B0B0F; }
+.layer { height: 300vh; }
+.layer-stage { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; align-items: center; overflow: hidden; }
+.layer-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 48px; align-items: center; width: 100%; }
+.layer-words { position: relative; min-height: 240px; }
+.lw { position: absolute; left: 0; right: 0; top: 44px; font-size: clamp(30px, 3.6vw, 50px); line-height: 1.08; font-weight: 800; letter-spacing: -0.03em; opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.lw4 { color: var(--yellow); }
+.layer[data-step="1"] .lw1, .layer[data-step="2"] .lw2, .layer[data-step="3"] .lw3, .layer[data-step="4"] .lw4 { opacity: 1; transform: none; }
+.layer-svg { width: 100%; height: auto; max-height: 72vh; overflow: visible; font-family: Inter, system-ui, sans-serif; }
+.box { fill: #16161C; stroke: #3A3A46; stroke-width: 2; }
+.box-tab { fill: none; stroke: #3A3A46; stroke-width: 2; }
+.paper rect, .paper-s { fill: #F5F3EF; }
+.paper line { stroke: #B9B5AE; stroke-width: 4; stroke-linecap: round; }
+.date-tag rect { fill: #3A1214; stroke: #E5484D; stroke-width: 2; }
+.date-tag text { fill: #FF8A8E; font-size: 16px; font-weight: 700; text-anchor: middle; }
+.silo-name { fill: #F5F3EF; font-size: 17px; font-weight: 700; text-anchor: middle; }
+.thin-layer { fill: var(--yellow); filter: drop-shadow(0 0 16px rgba(246,202,24,0.55)); }
+.thin-text { fill: #231F20; font-size: 17px; font-weight: 800; text-anchor: middle; }
+.join { stroke: var(--yellow); stroke-width: 3; stroke-dasharray: 6 6; }
+.ls { opacity: 0; transition: opacity 0.6s ease; }
+.layer[data-step="1"] .ls1 { opacity: 1; }
+.layer[data-step="2"] .ls2, .layer[data-step="3"] .ls2, .layer[data-step="4"] .ls2 { opacity: 1; }
+.layer[data-step="3"] .ls3, .layer[data-step="4"] .ls3 { opacity: 1; }
+.p-drop { transform: translateY(-40px); transition: transform 0.7s cubic-bezier(.3,.7,.2,1); }
+.layer[data-step="1"] .p-drop { transform: translateY(70px); }
+.date-tag { opacity: 0; transition: opacity 0.4s ease 0.8s; }
+.layer[data-step="1"] .date-tag { opacity: 1; }
+.thin-layer, .thin-text { transform-origin: 280px 322px; transform: scaleX(0.02); transition: transform 0.8s cubic-bezier(.3,.7,.2,1); }
+.layer[data-step="3"] .thin-layer, .layer[data-step="4"] .thin-layer, .layer[data-step="3"] .thin-text, .layer[data-step="4"] .thin-text { transform: none; }
+.silo .paper-s { transition: transform 0.6s ease; }
+.layer[data-step="3"] .silo .paper-s, .layer[data-step="4"] .silo .paper-s { transform: translateY(14px); }
+
+/* The four area photos assemble out of squares as their words land */
+.area.px canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+.area.px figcaption { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.area.px.in figcaption { opacity: 1; transform: none; }
+.area figcaption { z-index: 3; }
+.area::after { z-index: 2; }
+
+/* Five films */
+.vid-grid.v5 { grid-template-columns: repeat(5, 1fr); gap: 16px; }
+
+/* Services, small */
+.services { padding: 96px 0; background: linear-gradient(180deg, #0D0D11 0%, #121218 100%); }
+.services-in { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 48px; align-items: center; }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.chip { display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); color: var(--fg); text-decoration: none; font-weight: 600; font-size: 16px; transition: border-color 0.2s, transform 0.2s; }
+.chip:hover { border-color: rgba(246,202,24,0.7); transform: translateY(-1px); }
+.chip .wa-ico { width: 16px; height: 16px; color: var(--wa); }
+
+@media (max-width: 1000px) {
+  .layer { height: auto; }
+  .layer-stage { position: static; height: auto; padding: 72px 0; display: block; }
+  .layer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .layer-words { min-height: 0; display: flex; flex-direction: column; gap: 14px; }
+  .lw { position: static; opacity: 1; transform: none; font-size: 28px; }
+  .layer .ls { opacity: 1; }
+  .layer .p-drop { transform: translateY(70px); }
+  .layer .date-tag { opacity: 1; }
+  .layer .thin-layer, .layer .thin-text { transform: none; }
+  .vid-grid.v5 { grid-template-columns: repeat(2, 1fr); }
+  .services-in { grid-template-columns: 1fr; gap: 24px; }
+  .how-intro { margin-top: -28px; }
+}
+/* round seven (November 21, 2026, the owner: "this is not 2005, this is November 2026"): the reduced motion block here is removed; the page moves the same on every phone */
+
+/* Phone: the thin layer as three separate panels, each sentence above its own picture */
+.layer-panels { display: none; }
+@media (max-width: 1000px) {
+  .layer-grid { display: none; }
+  .layer-panels { display: flex; flex-direction: column; gap: 40px; }
+  .lp p { font-size: 26px; line-height: 1.12; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 14px; }
+  .lp p.y { color: var(--yellow); }
+  .lp svg { width: 100%; height: auto; }
+  .lp .ls { opacity: 0; }
+  .lp.s1 .ls1, .lp.s2 .ls2, .lp.s3 .ls2, .lp.s3 .ls3 { opacity: 1; }
+  .lp .p-drop { transform: translateY(70px); }
+  .lp .date-tag { opacity: 1; }
+  .lp .thin-layer, .lp .thin-text { transform: none; }
+}
+@media (max-width: 1000px) {
+  .layer .lp .ls { opacity: 0; }
+  .layer .lp.s1 .ls1, .layer .lp.s2 .ls2, .layer .lp.s3 .ls2, .layer .lp.s3 .ls3 { opacity: 1; }
+}
+
+/* Fresh review fixes: photo stays dark until it assembles; one look (6 px corners, glow only on the main button); films not ready show no play */
+.area.px img { opacity: 0; }
+.area.px.in img { opacity: 1; }
+:root { --r: 6px; }
+.step, .phone-shot img { border-radius: 6px; }
+.phone-shot img { border-radius: 14px; }
+.how-card, .area, .vid, .stat, .about-photo, .chip, .row { border-radius: 6px; }
+.chip, .row { border-radius: 999px; }
+.wa-pill, .wa-big, .btn-yellow, .how-n, .vid-play, .thin-layer { box-shadow: none; filter: none; }
+.num { text-shadow: none; }
+.hero .btn-yellow { box-shadow: 0 0 34px rgba(246, 202, 24, 0.42); }
+.vid.soon .vid-play { display: none; }
+/* round seven (November 21, 2026, the owner: "this is not 2005, this is November 2026"): the reduced motion block here is removed; the page moves the same on every phone */
+.phone-shot img { border-radius: 6px; box-shadow: 0 30px 80px rgba(0,0,0,0.6); }
+.seg { filter: none; }
+
+/* Light Alberta and Canada photographs behind each section, the way the first screen carries its highway */
+.sec-bg { position: absolute; inset: 0; overflow: hidden; z-index: 0; pointer-events: none; }
+.sec-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.26; filter: saturate(1.1); }
+.sec-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, #0D0D11 0%, rgba(13,13,17,0.55) 22%, rgba(13,13,17,0.55) 78%, #0D0D11 100%); }
+.layer .sec-bg { position: absolute; }
+.layer-stage, .audit > .wrap, .how > .wrap, .videos > .wrap, .services > .wrap, .about > .wrap, .contact > .wrap { position: relative; z-index: 1; }
+.layer { position: relative; }
+.layer .sec-bg img { opacity: 0.18; }
+.audit, .videos, .contact { background: #0D0D11; }
+.how, .about, .services { background: #0D0D11; }
+.layer-stage { position: sticky; z-index: 1; }
+.sec-bg img { opacity: 0.4; filter: saturate(1.2); }
+.sec-bg::after { background: linear-gradient(180deg, #0D0D11 0%, rgba(13,13,17,0.42) 20%, rgba(13,13,17,0.42) 80%, #0D0D11 100%); }
+.layer .sec-bg img { opacity: 0.22; }
+@media (max-width: 1000px) { .layer-stage { position: static; } }
+/* round seven (November 21, 2026, the owner: "this is not 2005, this is November 2026"): the reduced motion block here is removed; the page moves the same on every phone */
+/* round seven (November 21, 2026, the owner: "this is not 2005, this is November 2026"): the reduced motion block here is removed; the page moves the same on every phone */
+/* Recheck two: the stage keeps its place above the background on a phone */
+@media (max-width: 1000px) { .layer-stage { position: relative; z-index: 1; } }
+/* round seven (November 21, 2026, the owner: "this is not 2005, this is November 2026"): the reduced motion block here is removed; the page moves the same on every phone */
+
+/* The four tricks (Nov 19, 2026, evening). Brief: 00_Knowledge/Growth/work/jobs/site_home_four_tricks_Nov19/CHIEF_RULING.md */
+/* Trick three: question 1 of The Audit on the first screen; each answer opens The Audit at question 2 with it kept */
+.q1 { margin-top: 26px; max-width: 520px; padding: 16px 18px 18px; border: 1px solid rgba(255,255,255,0.16); border-radius: 6px; background: rgba(13,13,17,0.62); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); display: flex; flex-direction: column; gap: 6px; }
+.q1-head { margin: 0; font-size: 14px; color: var(--mute); letter-spacing: 0.04em; }
+.q1-t { margin: 0; font-size: 20px; font-weight: 800; line-height: 1.2; color: #F4F2EF; }
+.q1-q { margin: 0; font-size: 15px; line-height: 1.45; color: #D9D5CF; }
+.q1-a { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.q1-b { display: inline-flex; align-items: center; min-height: 46px; padding: 0 18px; border-radius: 6px; border: 1px solid #4A4A56; background: #16161C; color: #F4F2EF; font-weight: 700; font-size: 16px; text-decoration: none; transition: border-color 0.2s, background 0.2s; }
+.q1-b:hover, .q1-b:focus-visible { border-color: var(--yellow); background: #1D1D24; }
+
+/* Trick two: How it works is one loop. Arrows join the three stations; the dashed line returns to the owner */
+.how-grid { grid-template-columns: minmax(0,1fr) 44px minmax(0,1fr) 44px minmax(0,1fr); gap: 0; align-items: center; }
+.how-card { align-self: stretch; }
+.how-arrow { width: 44px; height: 44px; position: relative; }
+.how-arrow::before { content: ""; position: absolute; left: 6px; right: 14px; top: 50%; height: 3px; margin-top: -1.5px; background: var(--yellow); }
+.how-arrow::after { content: ""; position: absolute; right: 4px; top: 50%; margin-top: -8px; border: 8px solid transparent; border-left: 12px solid var(--yellow); border-right: 0; }
+.how-return { position: relative; height: 64px; margin: 0 calc((100% - 88px) / 6); border: 3px dashed var(--yellow); border-top: 0; border-radius: 0 0 6px 6px; }
+.how-return::before { content: ""; position: absolute; left: -10.5px; top: -6px; border: 9px solid transparent; border-bottom: 13px solid var(--yellow); border-top: 0; }
+.how-return-pill { position: absolute; left: 50%; bottom: -22px; transform: translateX(-50%); white-space: nowrap; background: #0D0D11; border: 2px solid var(--yellow); border-radius: 999px; padding: 8px 18px; font-weight: 700; font-size: 16px; color: #F4F2EF; }
+.how .wrap { padding-bottom: 28px; }
+@media (max-width: 1000px) {
+  .how-grid { grid-template-columns: 1fr; }
+  .how-arrow { margin: 0 auto; transform: rotate(90deg); }
+  .how-return { margin: 0 0 0 22px; height: auto; border: 0; border-left: 3px dashed var(--yellow); padding: 26px 0 0 18px; border-radius: 0; }
+  .how-return::before { display: none; }
+  .how-return-pill { position: static; transform: none; display: inline-block; white-space: normal; }
+}
+
+/* Trick three: tap an area to see what The Audit asks about it, in the team's own titles */
+.area { position: relative; }
+.area-tap { position: absolute; inset: 0; z-index: 4; font-size: 16px; width: 100%; height: 100%; background: transparent; border: 0; padding: 0; cursor: pointer; border-radius: 6px; }
+.area-tap:focus-visible { outline: 3px solid var(--yellow); outline-offset: -3px; }
+.area.on { box-shadow: inset 0 0 0 3px var(--yellow); }
+.area.on figcaption b { color: var(--yellow); }
+.area-hint { color: var(--mute); font-size: 15px; margin: 18px 0 0; }
+.area-ask { margin-top: 22px; padding: 20px 22px; border: 1px solid var(--line); border-left: 3px solid var(--yellow); border-radius: 6px; background: #121218; display: flex; flex-direction: column; gap: 12px; max-width: 760px; }
+.area-ask h3 { margin: 0; font-size: 22px; }
+.area-ask ul { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 6px; font-size: 17px; }
+.area-ask .area-acts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.area-ask .btn { box-shadow: none; }
+.area-ask .area-wa { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--line); color: var(--fg); text-decoration: none; font-weight: 700; }
+/* Six films: the thin layer explainer first, then the five approved films */
+.vid-grid.v6 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 1000px) { .vid-grid.v6 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* Fresh review fixes (Nov 19, evening): the long question behind one tap; both first buttons on one line on a phone; the loop closes on a phone */
+.q1-more { align-self: flex-start; background: none; border: 0; padding: 0; min-height: 44px; color: var(--yellow); font: inherit; font-size: 15px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.q1-q[hidden] { display: none; }
+@media (max-width: 600px) {
+  .hero .cta-row { flex-wrap: nowrap; gap: 10px; margin-top: 26px; }
+  .hero .cta-row .btn { min-height: 52px; padding: 0 18px; font-size: 16px; }
+  .q1 { margin-top: 18px; padding: 14px 16px 12px; }
+  .q1-more { order: 5; }
+  .q1-q { order: 6; }
+}
+@media (max-width: 1000px) {
+  .how-grid { position: relative; padding-left: 26px; }
+  .how-grid::before { content: ""; position: absolute; left: 6px; top: 46px; bottom: -48px; border-left: 3px dashed var(--yellow); }
+  .how-grid::after { content: ""; position: absolute; left: 7px; top: 38px; border: 8px solid transparent; border-left: 13px solid var(--yellow); border-right: 0; }
+  .how-return { position: relative; margin: 0; padding: 26px 0 0 0; border: 0; text-align: center; }
+  .how-return::before { display: block; content: ""; position: absolute; left: 6px; right: 50%; top: 46px; height: 0; border: 0; border-top: 3px dashed var(--yellow); }
+  .how-return::after { content: ""; position: absolute; left: 50%; top: 0; height: 26px; border-left: 3px dashed var(--yellow); }
+  .how-return-pill { position: relative; z-index: 1; display: inline-block; left: auto; bottom: auto; transform: none; }
+}

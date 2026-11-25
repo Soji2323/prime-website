@@ -1,0 +1,200 @@
+/* Build v6, the thin layer (November 20, 2026): the six beat story under question 1, the three offers and the small truck.
+   What it does: lays out the six beats (a typing, b the pixel dissolve into three silos, c the still line, d the thin
+   layer and the wide light with the real result phone, e the sandwich, f peace of mind with the seal), the band of three
+   offers with no prices, and the parked or riding truck. It keeps the look of build three (css/modern.css): the same
+   colours, type, layered surfaces, 12 to 16 px corners, pill buttons and the one glow.
+   What it reads: nothing; index.html loads it after css/modern.css. The final picture of every beat is the default here,
+   so with scripts off everything shows at rest (round seven: reduced motion no longer stills it). js/layer.js adds the class "armed" to set the
+   starting states, and "on" to each beat as it comes into view, which plays it once.
+   What calls it: index.html. */
+
+:root { color-scheme: dark; }
+
+/* ---------- the story: six beats, each in the flow, never pinned ---------- */
+.story { position: relative; background: #0B0B0F; }
+.beat { position: relative; overflow: hidden; }
+.beat > .wrap { position: relative; z-index: 2; }
+.beat .sec-bg img { opacity: 0.2; }
+.beat-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; align-items: center; }
+.beat-a, .beat-b, .beat-e { padding: 120px 0; }
+.beat-a { padding-top: 136px; }
+.beat-b { padding-top: 40px; }
+.bs { margin: 0; font-size: clamp(34px, 3.4vw, 50px); line-height: 1.1; font-weight: 800; letter-spacing: -0.032em; text-wrap: balance; }
+.art { margin: 0; position: relative; }
+.art-svg { display: block; width: 100%; height: auto; overflow: visible; font-family: Inter, system-ui, sans-serif; }
+.art-card { border-radius: var(--r-card); background: #15151B; border: 1px solid var(--hair); box-shadow: var(--inner), var(--soft); padding: 4% 3%; }
+.art-svg .box { fill: #1B1B22; stroke: #3A3A46; stroke-width: 2; }
+.art-svg .silo-name { font-size: 26px; }
+.art-svg .date-tag text { font-size: 19px; }
+.art-svg .thin-text { font-size: 24px; }
+.art-svg .paper-s { fill: #F5F3EF; }
+/* undo two rules of the old pinned stage (css/v2.css) that would hide the expired tag and squash the band */
+.art-svg .date-tag { opacity: 1; transition: none; }
+.art-svg .thin-layer, .art-svg .thin-text { transform: none; }
+
+/* a: "compliance" types in the page's yellow, one letter at a time; the paper drops into the folder once */
+.type { color: var(--yellow); white-space: nowrap; }
+.type .ch { opacity: 1; }
+.type .ch.cur { box-shadow: 3px 0 0 var(--yellow); }
+.story.armed .beat-a:not(.on) .type .ch { opacity: 0; }
+.a-drop { transform: translateY(70px); transition: transform 1.1s var(--ease-out); }
+.art-svg .a-tag { transition: opacity 0.6s ease 0.9s; }
+.story.armed .beat-a:not(.on) .a-drop { transform: none; }
+.story.armed .beat-a:not(.on) .art-svg .a-tag { opacity: 0; }
+
+/* b: the expired paper breaks into blocks (the Pixel FX dissolve, js/layer.js) that settle as three silos */
+.px-cover { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: var(--r-card); image-rendering: pixelated; pointer-events: none; }
+.b-old { opacity: 0; }
+.story.armed .beat-b:not(.swapped) .b-old { opacity: 1; }
+.story.armed .beat-b:not(.swapped) .b-new { opacity: 0; }
+
+/* c: one dark, still, quiet beat: the line large in the page's own type, nothing moving, no red */
+.beat-c { background: #060608; padding: 0; min-height: 78vh; min-height: 78svh; display: flex; align-items: center; }
+.beat-c::before, .beat-c::after { content: ""; position: absolute; left: 0; right: 0; height: 120px; pointer-events: none; }
+.beat-c::before { top: 0; background: linear-gradient(#0B0B0F, rgba(6, 6, 8, 0)); }
+.beat-c::after { bottom: 0; background: linear-gradient(rgba(6, 6, 8, 0), #0B0B0F); }
+.beat-c .wrap { width: 100%; }
+.still-line { margin: 0 auto; max-width: 15ch; text-align: center; font-size: clamp(46px, 7.2vw, 108px); line-height: 1.02; font-weight: 800; letter-spacing: -0.045em; color: var(--fg); text-wrap: balance; }
+
+/* d: the band is drawn across the silos, then a lot of the screen lights up and comes to life, and stays lit */
+.beat-d { padding: 120px 0 128px; }
+.d-grid { grid-template-columns: 0.85fr 1.15fr 0.62fr; gap: 44px; }
+.d-warm { position: absolute; inset: 0; z-index: 0; pointer-events: none; background:
+  radial-gradient(70% 60% at 62% 46%, rgba(246, 202, 24, 0.20) 0%, rgba(246, 202, 24, 0.07) 46%, rgba(246, 202, 24, 0) 72%),
+  linear-gradient(180deg, #0B0B0F 0%, #15110A 46%, #0B0B0F 100%); transition: opacity 2.4s var(--ease-out); }
+.d-rays { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; mix-blend-mode: screen; opacity: 0.8; image-rendering: pixelated; pointer-events: none; transition: opacity 2.6s var(--ease-out); }
+.d-rays, .d-motes { -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 80%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 80%, transparent 100%); }
+.d-motes { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; image-rendering: pixelated; pointer-events: none; }
+.art-svg .d-band { transform-box: fill-box; transform-origin: left center; transition: transform 1.2s cubic-bezier(0.3, 0.7, 0.2, 1); }
+.d-band-text, .d-joins { transition: opacity 0.6s ease 1s; }
+.beat-d .paper-s { transition: fill 1.4s ease, filter 1.6s ease; filter: drop-shadow(0 0 10px rgba(246, 202, 24, 0.7)); fill: #FFF6D8; }
+.beat-d .art-card { transition: border-color 1.6s ease, box-shadow 1.6s ease; border-color: rgba(246, 202, 24, 0.32); box-shadow: var(--inner), var(--soft), 0 0 70px -10px rgba(246, 202, 24, 0.28); }
+.lit-phone { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.lit-phone img { width: min(220px, 100%); height: auto; border-radius: 28px; border: 8px solid #222229; box-shadow: var(--inner), 0 30px 70px -20px rgba(0, 0, 0, 0.7), 0 0 80px -6px rgba(246, 202, 24, 0.42); transition: filter 1.6s ease, box-shadow 1.6s ease; }
+.lit-phone .btn { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 1px 2px rgba(0, 0, 0, 0.3); }
+.story.armed .beat-d:not(.on) .art-svg .d-band { transform: scaleX(0.02); }
+.story.armed .beat-d:not(.on) .d-band-text, .story.armed .beat-d:not(.on) .d-joins { opacity: 0; }
+.story.armed .beat-d:not(.lit) .d-warm, .story.armed .beat-d:not(.lit) .d-rays { opacity: 0; }
+.story.armed .beat-d:not(.lit) .paper-s { fill: #6D6A66; filter: none; }
+.story.armed .beat-d:not(.lit) .art-card { border-color: var(--hair); box-shadow: var(--inner), var(--soft); }
+.story.armed .beat-d .lit-phone:not(.lit) img { /* round seven: the phone lights as it comes into view itself */ filter: brightness(0.42) saturate(0.5); box-shadow: var(--inner), 0 30px 70px -20px rgba(0, 0, 0, 0.7); }
+
+/* e: the sandwich. Where work happens at the bottom, compliance and safety in the middle, peace of mind on top */
+.e-in { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; }
+.sandwich { display: flex; flex-direction: column; gap: 12px; }
+.slab { border-radius: var(--r-card); background: var(--surface); border: 1px solid var(--hair); box-shadow: var(--inner), var(--soft); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
+.slab-top { display: flex; align-items: center; gap: 18px; padding: 16px 22px; }
+.mini-phone { flex: none; width: 46px; height: 92px; border-radius: 10px; border: 3px solid #26262E; overflow: hidden; background: #0D0D11; box-shadow: 0 0 26px -4px rgba(246, 202, 24, 0.35); }
+.mini-phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.slab-t { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; }
+.slab-mid { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 20px 22px 22px; border-color: rgba(246, 202, 24, 0.45); background: linear-gradient(180deg, rgba(246, 202, 24, 0.10) 0%, rgba(246, 202, 24, 0.03) 100%), #17161A; }
+.slab-s { font-size: 17px; line-height: 1.5; color: #E7E3DD; max-width: 40ch; }
+.seal-pill { display: inline-flex; align-items: center; min-height: 40px; padding: 0 20px; border-radius: 999px; font-weight: 800; font-size: 17px; letter-spacing: -0.01em; color: var(--ink);
+  background: linear-gradient(180deg, #FFD83A 0%, var(--yellow) 100%);
+  border: 1px solid rgba(35, 31, 32, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 22px -10px rgba(0, 0, 0, 0.6), 0 0 34px rgba(246, 202, 24, 0.42);
+  transition: box-shadow 1s var(--ease-out), background-color 1s; }
+.slab-base { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 12px; }
+.tile { position: relative; display: block; aspect-ratio: 4 / 3; border-radius: var(--r-small); overflow: hidden; background: #0D0D11; }
+.tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(13, 13, 17, 0.85) 0%, rgba(13, 13, 17, 0) 60%); }
+.tile b { position: absolute; left: 10px; bottom: 8px; z-index: 1; font-size: 15px; font-weight: 700; }
+.e-words { display: flex; flex-direction: column; gap: 18px; }
+.mid-name { margin: 0; font-size: clamp(22px, 2vw, 28px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; color: var(--fg); padding-left: 16px; border-left: 2px solid var(--yellow); }
+.backup { margin: 0; font-size: 18px; line-height: 1.6; color: #E7E3DD; max-width: 34ch; }
+.story.armed .beat-e:not(.on) .slab { opacity: 0; transform: translateY(26px); }
+.story.armed .beat-e:not(.on) .e-words { opacity: 0; }
+.e-words { transition: opacity 0.9s ease 1.1s; }
+.story.armed .beat-e:not(.sealed) .seal-pill { background: var(--yellow); border-color: transparent; box-shadow: none; }
+
+/* f: hence, peace of mind. The photo settles, a slow light passes once over the words; no pixel effect here */
+.beat-f { position: relative; }
+.beat-f .peace-photo img { transition: transform 1.8s var(--ease-out); }
+.peace-big { margin: 0; font-size: clamp(46px, 6.4vw, 96px); font-weight: 900; line-height: 1.0; letter-spacing: -0.045em; text-shadow: 0 4px 40px rgba(13, 13, 17, 0.7); }
+.shine { color: var(--yellow); }
+.beat-f .peace-sub { margin-top: 18px; color: var(--fg); } /* one yellow line in this beat, the headline */
+.story.armed .beat-f:not(.on) .peace-photo img { transform: scale(1.08); }
+.story.armed .shine { position: relative; display: inline-block; color: transparent; background-image: linear-gradient(110deg, var(--yellow) 0%, var(--yellow) 40%, #FFF6D2 50%, var(--yellow) 60%, var(--yellow) 100%); background-size: 260% 100%; background-position: 100% 0; -webkit-background-clip: text; background-clip: text; text-shadow: none; }
+.story.armed .beat-f.shone .shine { background-position: 0% 0; transition: background-position 1.6s cubic-bezier(0.45, 0, 0.55, 1) 0.5s; }
+
+/* the truck: parked at the foot of peace of mind when it stands still (scripts off);
+   riding the foot of the screen when js/truck.js runs */
+.truck-park { position: absolute; z-index: 2; left: max(24px, env(safe-area-inset-left, 0px)); bottom: 22px; }
+.truck-rest { display: block; width: 132px; height: 54px; background: url("../fx/truck.webp") 0 0 / 528px 54px no-repeat; image-rendering: pixelated; }
+.truck-ride { position: fixed; left: 0; bottom: calc(6px + env(safe-area-inset-bottom, 0px)); z-index: 15; pointer-events: none; opacity: 0; transition: opacity 0.45s ease; will-change: transform; }
+.truck-ride.show { opacity: 1; }
+.truck-ride canvas { display: block; image-rendering: pixelated; filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.55)); }
+.truck-ride.aside { opacity: 0; }
+.truck-on .truck-park { display: none; }
+
+/* ---------- the three offers: no prices, every card invites a call or WhatsApp ---------- */
+.offers { position: relative; padding: 136px 0; }
+.offers > .wrap { position: relative; z-index: 1; }
+.offers h2 { margin-bottom: 28px; }
+.fleet { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 36px; }
+.fleet-q { font-size: 15px; font-weight: 600; letter-spacing: 0.06em; color: var(--mute); margin-right: 6px; }
+.fleet-b { touch-action: manipulation; min-height: 46px; padding: 0 20px; border-radius: 999px; font: inherit; font-size: 16px; font-weight: 600; color: var(--fg); background: rgba(255, 255, 255, 0.04); border: 1px solid var(--hair-strong); box-shadow: var(--inner); cursor: pointer; transition: border-color 0.2s, background-color 0.2s; }
+.fleet-b:hover { border-color: rgba(246, 202, 24, 0.6); }
+.fleet-b[aria-pressed="true"] { border-color: var(--yellow); background: rgba(246, 202, 24, 0.12); }
+html:not(.js) .fleet { display: none; }
+.offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
+.offer { display: flex; flex-direction: column; border-radius: var(--r-card); overflow: hidden; background: var(--surface); border: 1px solid var(--hair); box-shadow: var(--inner), var(--soft); transition: border-color 0.4s, box-shadow 0.4s, opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out), filter 0.9s var(--ease-out); }
+.offer.match { border-color: var(--yellow); box-shadow: var(--inner), var(--soft), inset 0 0 0 1px var(--yellow); }
+.offer-img { aspect-ratio: 16 / 10; overflow: hidden; background: #0D0D11; }
+.offer-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.offer-body { display: flex; flex-direction: column; gap: 8px; padding: 22px 24px 24px; flex: 1; }
+.offer-size { margin: 0; font-size: 15px; font-weight: 700; letter-spacing: 0.06em; color: var(--yellow); font-variant-numeric: tabular-nums; }
+.offer h3 { margin: 0; font-size: 26px; line-height: 1.15; }
+.offer-line { margin: 0; font-size: 18px; color: #EFECE7; }
+.offer-gives { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.offer-gives li { position: relative; padding-left: 22px; font-size: 16px; line-height: 1.45; color: #E2DED8; }
+.offer-gives li::before { content: ""; position: absolute; left: 2px; top: 0.5em; width: 9px; height: 5px; border-left: 2px solid var(--yellow); border-bottom: 2px solid var(--yellow); transform: rotate(-45deg); }
+.offer-acts { display: flex; flex-direction: column; gap: 10px; margin-top: auto; padding-top: 18px; }
+.offer-wa, .offer-call { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 0 18px; border-radius: 999px; font-weight: 600; font-size: 16px; text-decoration: none; transition: border-color 0.2s, background-color 0.2s; }
+.offer-wa { color: var(--ink); background: linear-gradient(180deg, #FFD83A 0%, var(--yellow) 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 1px 2px rgba(0, 0, 0, 0.3); }
+.offer-call { color: var(--fg); background: rgba(255, 255, 255, 0.03); border: 1px solid var(--hair-strong); box-shadow: var(--inner); }
+.offer-call:hover { border-color: rgba(246, 202, 24, 0.6); }
+
+/* ---------- a tablet and a phone ---------- */
+@media (max-width: 1000px) {
+  .beat-grid, .d-grid, .e-in { grid-template-columns: 1fr; gap: 28px; }
+  .beat-a, .beat-b, .beat-e { padding: 84px 0; }
+  .beat-a { padding-top: 96px; }
+  .beat-b { padding-top: 24px; }
+  .beat-d { padding: 84px 0 96px; }
+  .lit-phone img { width: min(210px, 60vw); }
+  .offer-grid { grid-template-columns: 1fr; max-width: 560px; }
+  .offers { padding: 96px 0; }
+  .truck-rest { width: 99px; height: 40.5px; background-size: 396px 40.5px; }
+}
+@media (max-width: 560px) {
+  .bs { font-size: 30px; line-height: 1.12; }
+  .beat-a, .beat-b, .beat-e { padding: 64px 0; }
+  .beat-a { padding-top: 72px; }
+  .beat-b { padding-top: 8px; }
+  .beat-c { min-height: 64vh; min-height: 64svh; }
+  .still-line { font-size: 46px; }
+  .beat-d { padding: 64px 0 76px; }
+  .d-grid { gap: 24px; }
+  .art-svg .silo-name { font-size: 27px; }
+  .art-svg .thin-text { font-size: 27px; }
+  .art-svg .date-tag text { font-size: 24px; }
+  .slab-top { padding: 12px 16px; gap: 14px; }
+  .slab-t { font-size: 19px; }
+  .slab-mid { padding: 16px 16px 18px; }
+  .slab-s { font-size: 16px; }
+  .slab-base { gap: 8px; padding: 10px; }
+  .tile b { left: 8px; bottom: 6px; font-size: 14px; }
+  .backup { font-size: 17px; }
+  .beat-f .peace-in { padding-bottom: 96px; }
+  .peace-big { font-size: 46px; }
+  .offers { padding: 84px 0; }
+  .offer-body { padding: 18px 18px 20px; }
+  .offer h3 { font-size: 24px; }
+  .fleet { margin-bottom: 26px; gap: 8px; }
+  .fleet-q { width: 100%; }
+  .fleet-b { min-height: 44px; padding: 0 13px; font-size: 15px; }
+}
+
+/* round seven (November 21, 2026, the owner: "this is not 2005, this is November 2026"): the reduced motion block that
+   stilled the beats is removed; the story moves the same on every phone, whatever its Reduce Motion setting */

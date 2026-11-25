@@ -1,0 +1,65 @@
+/* Round eight of the thin layer build (November 21, 2026, the owner's words on the lag and the lost pictures; job folder
+   00_Knowledge/Growth/work/jobs/site_today_layer_offers_Nov20, round8).
+   What it does: nothing on the page starts hidden. Every part that used to wait at nothing until a scroll or a timer
+   (the cards and lines that rose in, the first screen's words and clock, the area photos and their names, the letters of
+   "compliance" and of the Fail line, the expired tag, the band of the thin layer drawing with its words, the closing
+   words, and the Transformation Advisory teaser) now stands visible from the first moment at 60 in a hundred of its
+   light (the letters of "compliance" and of the Fail line at 22 in a hundred since November 21, so each is seen to arrive), and its movement only adds the rest of the light, its small rise or its draw on top. The letters of "inspect"
+   keep their faint waiting letters, and the glow, the truck and the lighting up stay as round seven built them.
+   The Advisory teaser no longer pins the screen on any width (js/advisory.js): its heading and its three steps stand lit
+   along the yellow line, and the line draws down as the page moves past.
+   What it reads: nothing outside this build. What calls it: index.html, last of the style sheets, after css/round7.css.
+   With scripts off every part shows whole, as before. */
+:root { --r8-wait: 0.6; }
+
+/* ---------- the cards and lines that rose in (how it works, the offers) ---------- */
+.reveal { opacity: var(--r8-wait); }
+.reveal.in { opacity: 1; }
+
+/* ---------- the first screen: its words and the clock ---------- */
+.js .hero-copy:not(.ready) > * { opacity: var(--r8-wait); }
+.js .dial:not(.drawn) .seg, .js .dial:not(.drawn) .ticks, .js .dial:not(.drawn) .hand, .js .dial:not(.drawn) .dial-tag,
+.js .dial:not(.drawn) .dial-mid, .js .dial:not(.drawn) .dial-face { opacity: var(--r8-wait); }
+
+/* ---------- the four area photos: the photo stands; the yellow squares wink over it (js/v2.js) ---------- */
+.area.px img { opacity: 1; }
+.area.px figcaption { opacity: var(--r8-wait); }
+.area.px.in figcaption { opacity: 1; }
+
+/* ---------- the story: "compliance" waits in its yellow, the expired tag, the band and its words ---------- */
+.story.armed .beat-a:not(.on) .type .ch { opacity: 0.22; }   /* dimmer than the other waiting parts, so the letters are seen to arrive one by one */
+.story.armed .beat-a:not(.on) .art-svg .a-tag { opacity: var(--r8-wait); }
+.art-svg .d-band { transition: transform 1.2s cubic-bezier(0.3, 0.7, 0.2, 1), opacity 1.2s ease; }
+.story.armed .beat-d:not(.on) .art-svg .d-band { transform: none; opacity: var(--r8-wait); }
+.story.armed .beat-d:not(.on) .d-band-text, .story.armed .beat-d:not(.on) .d-joins { opacity: var(--r8-wait); }
+
+/* ---------- the Fail line: its letters wait visible; only "inspect" keeps its faint waiting letters ---------- */
+.fl-armed .fl-c { opacity: 0.22; }
+.fl-armed .fl-insp .fl-c { opacity: 0.14; }
+.fl-armed .fl-c.in, .fl-armed .fl-insp .fl-c.in { opacity: 1; }
+
+/* ---------- the closing words ---------- */
+.closing.cl-armed .cl-flow { opacity: var(--r8-wait); }
+.closing.cl-armed.cl-in .cl-flow { opacity: 1; }
+
+/* ---------- the Advisory teaser: never pinned, its heading and three steps stand lit along the yellow line ---------- */
+.advisory .adv-rise { transform: none; }
+.advisory .adv-step { opacity: 1; transform: none; }
+.advisory.flow .adv-fill { transition: transform 0.5s var(--ease-out); }
+
+/* Soji, November 21, 2026, with a photo: the Office, Yard and Road tiles come back between the two caption lines under
+   the drawing, as one framed row of three dark tiles with a yellow line icon and a white label each. */
+.d-cap .d-tiles { width: 100%; max-width: 520px; margin: 6px auto; padding: 12px; gap: 10px; border: 1px solid var(--hair); border-radius: 18px; background: rgba(13, 13, 17, 0.55); }
+.d-cap .d-tiles .tile { border-radius: 14px; min-height: 104px; }
+.d-cap .d-tiles .tile b { color: var(--fg); font-weight: 700; }
+.d-cap .d-tiles .tile-ico { width: 44px; height: 44px; }
+@media (max-width: 560px) {
+  .d-cap .d-tiles { padding: 10px; gap: 8px; }
+  .d-cap .d-tiles .tile { min-height: 88px; }
+  .d-cap .d-tiles .tile-ico { width: 38px; height: 38px; }
+}
+
+/* November 24, 2026, the owner's sizes of fleet: the two small doors under the three ways, for one unit and for 2 to 4 units. */
+.offers-doors { margin: 18px auto 0; text-align: center; color: var(--fg); font-size: 15px; display: flex; flex-wrap: wrap; gap: 8px 12px; justify-content: center; align-items: center; }
+.offers-doors .door { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border: 1px solid var(--yellow); border-radius: 999px; color: var(--fg); text-decoration: none; font-weight: 600; }
+.offers-doors .door:hover, .offers-doors .door:focus-visible { background: rgba(246, 203, 21, 0.12); }

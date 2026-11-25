@@ -1,0 +1,93 @@
+/* Build three, The Audit inside, restyled only (November 19, 2026).
+   What it does: gives The Audit's pages the same elements of today as the home page of build three: layered glass
+   surfaces (a faint inner light, a hairline, a soft shadow), 12 to 16 px corners, pill buttons with an inner light,
+   a light press on every answer and button, one still glow on the main button (Start the check), and nothing that
+   loops. Words, engine, data and behaviour are untouched: this file only overrides css/e.css.
+   What it reads: nothing. What calls it: audit/index.html and audit/end/index.html, loaded after css/e.css. */
+:root {
+  --m-hair: rgba(255, 255, 255, 0.1);
+  --m-inner: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  --m-soft: 0 1px 2px rgba(0, 0, 0, 0.35), 0 18px 40px -18px rgba(0, 0, 0, 0.7);
+  --m-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --m-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+body { letter-spacing: -0.006em; }
+h1, h2 { text-wrap: balance; }
+/* Round two, November 20, 2026, the web design guidelines: the page is dark, so its scroll bar and fields are too. The question and the result name are now the h1 of their screens; their classes in css/e.css already set their size and spacing. */
+:root { color-scheme: dark; }
+p { text-wrap: pretty; }
+.hero .display { letter-spacing: -0.035em; }
+
+/* glass, layered, only where it sits over a photo */
+.glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.015) 100%), rgba(18, 18, 24, 0.72);
+  border: 1px solid var(--m-hair);
+  box-shadow: var(--m-inner), var(--m-soft);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+}
+.qcard, .result-head, .ladder, .contact { border-radius: 16px; }
+.qcard { padding: 26px 26px 22px; }
+.qtitle { letter-spacing: -0.02em; text-wrap: balance; }
+.qtext { line-height: 1.55; }
+
+/* answers: layered cards that answer a press */
+.answer {
+  border-radius: 14px;
+  border: 1px solid var(--m-hair);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.055) 0%, rgba(255, 255, 255, 0.015) 100%), rgba(18, 18, 24, 0.8);
+  box-shadow: var(--m-inner), 0 10px 26px -16px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  font-weight: 500;
+  transition: transform 0.22s var(--m-spring), border-color 0.2s, background-color 0.2s;
+}
+.answer:hover { border-color: rgba(246, 202, 24, 0.55); }
+.answer:active { transform: scale(0.98); transition-duration: 0.12s; }
+.answer.chosen { border-color: rgba(246, 202, 24, 0.85); box-shadow: var(--m-inner), 0 0 0 1px rgba(246, 202, 24, 0.85); background: linear-gradient(180deg, rgba(246, 202, 24, 0.14) 0%, rgba(246, 202, 24, 0.05) 100%), rgba(18, 18, 24, 0.82); }
+.progress { border-radius: 999px; overflow: hidden; }
+
+/* pill buttons with an inner light; one still glow on the main button; nothing loops */
+.start {
+  animation: none;
+  background: linear-gradient(180deg, #FFD83A 0%, var(--yellow) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 0 30px rgba(246, 202, 24, 0.45);
+  min-height: 54px; padding: 14px 34px; font-size: 17px;
+  transition: transform 0.22s var(--m-spring);
+}
+.start:active, .send:active, .wa:active, .row:active, .swap:active { transform: scale(0.97); transition-duration: 0.12s; }
+.send { background: linear-gradient(180deg, #FFD83A 0%, var(--yellow) 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 1px 2px rgba(0, 0, 0, 0.3); transition: transform 0.22s var(--m-spring), opacity 0.2s; }
+.send:disabled { box-shadow: none; }
+.wa { background: linear-gradient(180deg, #FFD83A 0%, var(--yellow) 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 1px 2px rgba(0, 0, 0, 0.3); transition: transform 0.22s var(--m-spring); }
+.field input { border-radius: 14px; border-color: var(--m-hair); box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3); }
+.field input:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
+.up-arrow { animation: none; }
+
+/* the ladder: soft steps, a calm marker */
+.step { border-radius: 12px 12px 4px 4px; border-color: var(--m-hair); box-shadow: var(--m-inner); }
+.step.here { box-shadow: var(--m-inner), 0 0 0 1px rgba(246, 202, 24, 0.85); }
+
+/* the last block */
+.row { border-radius: 999px; background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.015) 100%), rgba(16, 16, 22, 0.62); border-color: var(--m-hair); box-shadow: var(--m-inner), var(--m-soft); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transition: transform 0.22s var(--m-spring); }
+.photo-band .band-copy { letter-spacing: -0.025em; }
+
+@media (prefers-reduced-motion: reduce) {
+  .answer, .start, .send, .wa, .row { transition: none; }
+  .answer:active, .start:active, .send:active, .wa:active, .row:active { transform: none; }
+}
+
+/* Fixes after the final test, November 19, 2026. Each line traces to one numbered fix in
+   00_Knowledge/Growth/work/jobs/site_four_builds_Nov19/fixes_after_test/FIXES.md; no words were changed. */
+/* Fix 2: the question count, the area line and the result ranges take build one's question count colour (the body token) */
+.qcount, .qarea, .step-range { color: var(--body); }
+/* Fix 3: the photo credits at 14 px on a phone */
+@media (max-width: 599.98px) { .credits { font-size: 14px; } }
+/* Fix 5: the internal version line stays in the page source but is not shown */
+#version { display: none; }
+/* Round two, step 4, the web design guidelines: every control answers a hover, taps without the double tap delay, and
+   shows the page's own press feedback in place of the grey tap flash. No colour or size of the design changes. */
+a, button { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.start:hover, .send:not(:disabled):hover, .wa:hover { filter: brightness(1.06); }
+.qmore:hover, .swap:hover { text-decoration-thickness: 2px; color: var(--text); }
+.row:hover { border-color: rgba(246, 202, 24, 0.55); }
+::selection { background: rgba(246, 202, 24, 0.32); color: #FFFFFF; }
+html { scrollbar-color: #3A3A46 #0D0D11; caret-color: #F6CA18; }

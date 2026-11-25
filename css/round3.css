@@ -1,0 +1,65 @@
+/* Round three of the thin layer build (November 20, 2026), as it stands after round four.
+   What it does: (1) the Fail line (beat c) is a positioned block; round four types it in and colours it
+   (css/round4.css and js/fail_line.js), and the round three pixel crack, inspection light and dimmed second half are
+   gone; (2) the scroll bar is the same small truck seen from above, with puffs behind it while the page scrolls
+   (section 3); (3) the film window fits the film's shape, so a wide film fills a phone's width (section 4); (4) WhatsApp
+   us keeps the right edge of the header at every width (section 5, after the fresh review). The round three clock
+   moment (warm halo, bezel glint, area names lighting) went with the pixel clock in round four.
+   What it reads: fx/scroll_truck.webp. What calls it: index.html, after css/round2.css. Round seven (November 21,
+   2026): the scroll bar truck eases the same whatever the phone's Reduce Motion setting. */
+
+/* ---------- 2. the Fail line (beat c) ---------- */
+.still-line { position: relative; }
+
+/* ---------- 3. the scroll bar truck (Soji, November 20, 2026: "make the top part of scroll bar look like a truck and
+   smoke going") ---------- the truck seen from above, its cab in the page's yellow since round four so it is told apart from the red truck at the foot (Soji, Nov 20: "same color trucks are not looking good, bottom retain it") (fx/scroll_truck.webp: five frames of 7 by 42 art pixels,
+   frame 0 at rest, frames 1 to 4 with puffs behind the van), shown at two screen pixels an art pixel.
+   A computer: the real scroll bar. Its thumb carries the truck at its top, facing down the page, on a dark road; while
+   the page scrolls, js/scroll_truck.js steps the html class sb-f1 to sb-f4 so the puffs move, and takes it away when the
+   scroll stops. Chrome, Edge and Safari read ::-webkit-scrollbar only when scrollbar-color is not set, so that is set
+   back to auto for them; Firefox keeps scrollbar-color, now with the truck's oxblood red thumb.
+   A phone hides its real scroll bar, so js/scroll_truck.js draws a thin one of its own at the right edge (.sb-truck),
+   the truck as its thumb, moving with the scroll, never catching a tap. */
+html { scrollbar-color: #E8B816 #0D0D11; } /* round five: the yellow cab, as the scroll bar truck has since round four */
+@supports selector(::-webkit-scrollbar) { html { scrollbar-color: auto; } }
+::-webkit-scrollbar { width: 14px; }
+::-webkit-scrollbar-track { background: #0D0D11; }
+::-webkit-scrollbar-thumb { min-height: 96px; border-radius: 3px; background: url("../fx/scroll_truck.webp") 0 0 / 70px 84px no-repeat, #24242B; }
+::-webkit-scrollbar-thumb:hover { background-color: #2E2E37; }
+html.sb-f1 ::-webkit-scrollbar-thumb { background-position: -14px 0; }
+html.sb-f2 ::-webkit-scrollbar-thumb { background-position: -28px 0; }
+html.sb-f3 ::-webkit-scrollbar-thumb { background-position: -42px 0; }
+html.sb-f4 ::-webkit-scrollbar-thumb { background-position: -56px 0; }
+/* after the fresh review (note 6): 0.85 at rest, so the phone's truck reads as a truck and not as a bar */
+.sb-truck { position: fixed; top: 0; right: 1px; z-index: 30; pointer-events: none; opacity: 0.85; transition: opacity 0.4s ease; will-change: transform; }
+.sb-truck.moving { opacity: 1; transition-duration: 0.12s; }
+.sb-truck canvas { display: block; image-rendering: pixelated; filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6)); }
+
+/* ---------- 4. the film window (from the film check, November 20, 2026) ---------- the window was capped at
+   min(92vw, 520px), so a 16 by 9 film played about 359 by 202 px on a phone and its captions could not be read.
+   js/home.js marks the window wide or tall from the film. A wide film now uses the phone's full width, and up to
+   1100 px on a computer; a tall film takes as much height as fits above Start The Audit, its close button on the film's top corner.
+   The look stays: the same dark veil, the same close button and button under the film. */
+.modal.wide video { max-width: min(92vw, 1100px); }
+@media (max-width: 560px) {
+  .modal.wide, .modal.tall { padding-left: 0; padding-right: 0; }
+  .modal.wide .modal-box { width: 100%; }
+  .modal.wide video { width: 100vw; max-width: 100vw; height: auto; border-radius: 0; }
+  .modal.wide .modal-x { right: 12px; }
+  .modal.tall video { max-height: calc(100vh - 112px); max-height: calc(100svh - 112px); max-width: 100vw; }
+  .modal.tall .modal-x { top: 10px; right: 10px; z-index: 2; }
+}
+/* a phone on its side (or any short screen): the film takes the height left after Start The Audit, and the close
+   button moves onto the film's top corner, so both stay whole on the screen */
+@media (max-height: 560px) {
+  .modal video { max-height: calc(100vh - 104px); max-height: calc(100svh - 104px); }
+  .modal .modal-x { top: 8px; right: 8px; z-index: 2; }
+}
+
+/* ---------- 5. the header between 561 and 1000 px wide (after the fresh review, note 10) ---------- the menu is hidden below
+   1001 px, which took away the margin that pushed WhatsApp us to the right; on a phone a rule at 560 px puts it back, but
+   between the two (a phone on its side, a small tablet) the button sat beside the logo. It now sits at the right edge at
+   every width. */
+@media (max-width: 1000px) { .nav-in .wa-pill { margin-left: auto; } }
+
+/* round seven (November 21, 2026, the owner: "this is not 2005, this is November 2026"): the reduced motion block here is removed; the page moves the same on every phone */

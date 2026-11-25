@@ -1,0 +1,67 @@
+/* Round two of the thin layer build (November 20, 2026): the merged result block and the sandwich without repeated
+   pictures.
+   What it does: (1) keeps the first screen clock face hidden until js/modern.js has drawn it, with a failsafe at 3 s
+   (round four took out the round two pixel clock and its minute hand strip; the clock itself is now fx/clock.svg, set
+   in css/round4.css); (2) sets the words and Start The Audit that moved under the lit phone in beat d from the old
+   audit band; (3) draws the small phone on the sandwich top and the Office, Yard and Road signs at its foot, so no
+   photo or screen on the page appears twice.
+   What it reads: nothing; index.html loads it after css/layer.css. What calls it: index.html. */
+
+/* ---------- 1. the clock ---------- */
+.js .dial:not(.drawn) .dial-face { opacity: 0; animation: failsafe 0.01s linear 3s forwards; }
+/* round seven (November 21, 2026, the owner: "this is not 2005, this is November 2026"): the reduced motion block here is removed; the page moves the same on every phone */
+
+/* ---------- 2. see your result, under the lit phone ---------- */
+@media (min-width: 1001px) { .d-grid { grid-template-columns: 0.82fr 1.08fr 0.78fr; } }
+.lit-phone { scroll-margin-top: 96px; }
+.result-words { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; max-width: 30ch; }
+.result-h { margin: 0; font-size: 22px; line-height: 1.2; font-weight: 700; letter-spacing: -0.02em; text-wrap: balance; }
+.result-words p { margin: 0; font-size: 16px; line-height: 1.55; color: #E7E3DD; text-wrap: pretty; }
+.result-words .btn { margin-top: 6px; }
+@media (max-width: 1000px) {
+  .result-h { font-size: 24px; }
+  .result-words p { font-size: 17px; }
+}
+
+/* ---------- 3. the sandwich: a drawn phone on top, signs at the foot ---------- */
+.mini-phone { display: flex; flex-direction: column; justify-content: center; gap: 7px; padding: 0 7px; background: linear-gradient(180deg, #1F1A0C 0%, #0D0D11 100%); }
+.mini-phone i { display: block; height: 6px; border-radius: 3px; background: var(--yellow); box-shadow: 0 0 10px rgba(246, 202, 24, 0.6); }
+.mini-phone i:nth-child(2) { width: 72%; opacity: 0.85; }
+.mini-phone i:nth-child(3) { width: 48%; opacity: 0.7; }
+.tile { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; aspect-ratio: auto; min-height: 96px; background: #121217; border: 1px solid var(--hair); }
+.tile::after { content: none; }
+.tile-ico { width: 34px; height: 34px; fill: none; stroke: var(--yellow); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.tile b { position: static; font-size: 15px; }
+@media (max-width: 560px) {
+  .tile { min-height: 84px; gap: 6px; }
+  .tile-ico { width: 30px; height: 30px; }
+  .tile b { font-size: 14px; }
+}
+
+/* ---------- 4. from the web design guidelines (round two, step 4) ---------- */
+/* a skip link, out of sight until a keyboard reaches it */
+.skip { position: absolute; left: 16px; top: 12px; z-index: 100; padding: 12px 18px; border-radius: 999px; background: var(--yellow); color: var(--ink); font-weight: 700; text-decoration: none; transform: translateY(-200%); transition: transform 0.2s var(--ease-out); }
+.skip:focus-visible { transform: none; }
+/* every menu link is at least 44 px wide to tap */
+.menu a { display: inline-flex; justify-content: center; min-width: 44px; }
+/* the film window keeps the scroll inside it */
+.modal { overscroll-behavior: contain; }
+/* every tap goes through at once (no double tap delay) and shows the page's own press spring in place of the grey flash */
+a, button { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+
+/* ---------- 5. from Impeccable's polish (round two, step 3) ---------- */
+/* the parts the browser draws carry the page's colours too: selection, caret, scroll bar */
+::selection { background: rgba(246, 202, 24, 0.32); color: #FFFFFF; }
+html { scrollbar-color: #3A3A46 #0D0D11; caret-color: var(--yellow); }
+/* the proof line's rule is a hairline, not a coloured bar */
+.proof { border-left-width: 1px; }
+/* the close mark of the film window is drawn, centred */
+.modal-x { display: grid; place-items: center; }
+/* five film cards in two columns: the last one takes the whole row instead of standing alone */
+@media (max-width: 1000px) {
+  .vid-grid.v6 > .vid:last-child:nth-child(odd) { grid-column: 1 / -1; aspect-ratio: 16 / 7; }
+}
+
+/* ---------- 6. from webapp testing (round two, step 5) ---------- */
+/* the headline's two lines had the "y" of "you" resting on "audit"; a little more line height parts them */
+.hero h1 { line-height: 1.1; }

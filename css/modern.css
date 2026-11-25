@@ -1,0 +1,217 @@
+/* Build three, the first build made of today (November 19, 2026).
+   What it does: renews the elements of version two in the 2026 way, with the same dark look, colours, photos, words
+   and features. Layered surfaces (a faint inner light, a hairline, a soft shadow), generous space, larger softer
+   type, pill buttons, 12 to 16 px corners, glass only over a photo, one glow on the main button only.
+   What it reads: nothing; it is loaded by index.html after css/home.css and css/v2.css and overrides them.
+   What calls it: index.html. js/modern.js adds the motion; with scripts off this file alone shows everything.
+   Sources: 00_Knowledge/Growth/work/jobs/site_second_build_Nov19/TOP_PIECES_words.md (the ten picks), card W284,
+   MotionSites recipes 1, 4, 10 and 13, React Bits BlurText, ScrollReveal, CountUp and MaskedHeading values. */
+
+:root {
+  /* the same colours as version two */
+  --canvas: #0D0D11; --panel: #16161C; --panel2: #1D1D25; --line: #2B2B35;
+  --fg: #F5F3EF; --mute: #B9B5AF; --yellow: #F6CA18; --ink: #231F20;
+  /* layered surface: faint inner light, hairline, soft shadow */
+  --hair: rgba(255, 255, 255, 0.085);
+  --hair-strong: rgba(255, 255, 255, 0.14);
+  --surface: linear-gradient(180deg, rgba(255, 255, 255, 0.055) 0%, rgba(255, 255, 255, 0.018) 100%), #15151B;
+  --surface-hi: linear-gradient(180deg, rgba(255, 255, 255, 0.075) 0%, rgba(255, 255, 255, 0.025) 100%), #18181F;
+  --inner: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  --soft: 0 1px 2px rgba(0, 0, 0, 0.35), 0 18px 40px -18px rgba(0, 0, 0, 0.65);
+  --glass: rgba(16, 16, 22, 0.46);
+  --r-card: 16px; --r-small: 12px;
+  /* Emil Kowalski: ease out on entry, small moves under about 300 ms */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+/* Type, pick 7 and pick 8: a scale with real steps, headings 1.1, text 1.55, balance and pretty wrapping */
+body { font-size: 18px; line-height: 1.55; letter-spacing: -0.006em; font-feature-settings: "cv11", "ss01"; }
+h1, h2, h3 { text-wrap: balance; }
+p, li, figcaption span { text-wrap: pretty; }
+h2 { font-size: clamp(30px, 3.6vw, 52px); line-height: 1.1; font-weight: 700; letter-spacing: -0.035em; }
+.h-small { font-size: clamp(28px, 2.8vw, 40px); }
+h3 { font-weight: 700; letter-spacing: -0.02em; }
+.eyebrow { font-size: 14px; font-weight: 600; letter-spacing: 0.16em; margin-bottom: 18px; }
+.num, .nw, .dial-big, .how-n { font-variant-numeric: tabular-nums; }
+.audit-copy p, .about-copy p, .how-intro, .peace-line { line-height: 1.6; }
+
+/* Generous space */
+.audit, .how, .areas, .videos, .about, .contact { padding: 136px 0; }
+.services { padding: 120px 0; }
+.how h2, .areas h2, .videos h2 { margin-bottom: 60px; }
+
+/* Buttons: pills, the one glow on the main button of the first screen */
+.btn { min-height: 56px; padding: 0 30px; font-weight: 600; font-size: 17px; letter-spacing: -0.01em; transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out), background-color 0.2s; }
+.btn:hover { transform: translateY(-1px); }
+.btn-yellow { background: linear-gradient(180deg, #FFD83A 0%, var(--yellow) 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 1px 2px rgba(0, 0, 0, 0.3); }
+.btn-yellow:hover { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 1px 2px rgba(0, 0, 0, 0.3); }
+.hero .btn-yellow, .hero .btn-yellow:hover { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 0 34px rgba(246, 202, 24, 0.42); }
+.btn-ghost { background: rgba(16, 16, 22, 0.34); border: 1px solid rgba(245, 243, 239, 0.32); box-shadow: var(--inner); backdrop-filter: blur(10px) saturate(1.2); -webkit-backdrop-filter: blur(10px) saturate(1.2); }
+.btn-ghost:hover { border-color: rgba(245, 243, 239, 0.55); }
+.wa-pill { background: linear-gradient(180deg, #FFD83A 0%, var(--yellow) 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45); font-weight: 600; }
+:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
+
+/* The bar on top: glass once the page scrolls */
+.nav.solid { background: rgba(13, 13, 17, 0.62); backdrop-filter: blur(18px) saturate(1.3); -webkit-backdrop-filter: blur(18px) saturate(1.3); border-bottom-color: var(--hair); }
+.menu a { font-weight: 500; }
+
+/* ---------- The first screen: the highway seen across most of it, the clock whole, few words ---------- */
+.hero { min-height: 100vh; min-height: 100svh; }
+.hero-photo img { animation: settle 1.8s var(--ease-out) both; filter: saturate(1.15) contrast(1.04); }
+@keyframes settle { from { transform: scale(1.08); } to { transform: scale(1); } }
+.hero-scrim { background:
+  linear-gradient(90deg, rgba(13,13,17,0.66) 0%, rgba(13,13,17,0.38) 34%, rgba(13,13,17,0.06) 58%, rgba(13,13,17,0) 100%),
+  linear-gradient(to top, #0D0D11 0%, rgba(13,13,17,0) 18%),
+  linear-gradient(to bottom, rgba(13,13,17,0.45) 0%, rgba(13,13,17,0) 16%); }
+.hero-in { grid-template-columns: 1.1fr 0.9fr; gap: 48px; padding-top: 112px; padding-bottom: 72px; }
+.hero h1 { font-size: clamp(42px, 5.6vw, 82px); line-height: 1.04; font-weight: 800; letter-spacing: -0.042em; text-shadow: 0 2px 30px rgba(13,13,17,0.55); }
+.hero .eyebrow { text-shadow: 0 1px 12px rgba(13,13,17,0.7); }
+.lead { font-size: clamp(18px, 1.55vw, 22px); line-height: 1.5; margin-top: 20px; max-width: 32ch; color: #F0EDE8; }
+.proof { margin-top: 18px; font-size: 16px; line-height: 1.5; color: #ECE8E2; max-width: 42ch; border-left: 2px solid var(--yellow); padding-left: 14px; }
+.cta-row { margin-top: 32px; gap: 12px; }
+
+/* the clock: a ring over the photo, the road seen through it */
+.dial { width: min(440px, 100%); }
+.dial-track { fill: rgba(13, 13, 17, 0.22); stroke: rgba(245, 243, 239, 0.14); stroke-width: 22; }
+.seg { stroke-dasharray: none; stroke-dashoffset: 0; animation: none; stroke-linecap: round; filter: none; }
+.hand { animation: none; stroke-width: 5; }
+.dial-mid { padding-top: 104px; }
+.dial-mid::before { content: ""; position: absolute; left: 50%; top: 62%; width: 52%; height: 34%; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(closest-side, rgba(13,13,17,0.5) 0%, rgba(13,13,17,0.28) 55%, rgba(13,13,17,0) 100%); z-index: -1; }
+.dial-mid { z-index: 1; }
+.dial-small { font-size: 18px; color: #EFECE7; text-shadow: 0 1px 10px rgba(13,13,17,0.8); }
+.dial-big { font-size: 44px; font-weight: 700; letter-spacing: -0.035em; text-shadow: 0 2px 16px rgba(13,13,17,0.8); }
+.dial-tag { animation: none; opacity: 1; font-weight: 600; font-size: 15px; padding: 7px 14px; background: var(--glass); border: 1px solid rgba(246, 202, 24, 0.42); box-shadow: var(--inner), 0 8px 24px -10px rgba(0,0,0,0.6); backdrop-filter: blur(10px) saturate(1.2); -webkit-backdrop-filter: blur(10px) saturate(1.2); }
+
+/* Motion is added only when scripts run; the drawing waits for anime.js and shows by itself after 3 seconds if it never comes */
+.js .dial:not(.drawn) .seg, .js .dial:not(.drawn) .ticks, .js .dial:not(.drawn) .hand, .js .dial:not(.drawn) .dial-tag, .js .dial:not(.drawn) .dial-mid { opacity: 0; animation: failsafe 0.01s linear 3s forwards; }
+.js .hero-copy:not(.ready) > * { opacity: 0; animation: failsafe 0.01s linear 2.5s forwards; }
+@keyframes failsafe { to { opacity: 1; } }
+
+/* ---------- Question 1, the first thing below the first screen ---------- */
+.q1-band { position: relative; padding: 72px 0 88px; background: var(--canvas); }
+.q1-band .wrap { display: flex; justify-content: center; }
+.q1 { margin: 0; width: 100%; max-width: 640px; padding: 28px 30px 26px; gap: 8px; border-radius: var(--r-card); background: var(--surface-hi); border: 1px solid var(--hair-strong); box-shadow: var(--inner), var(--soft); backdrop-filter: none; -webkit-backdrop-filter: none; }
+.q1-head { font-size: 14px; letter-spacing: 0.06em; color: var(--mute); }
+.q1-t { font-size: clamp(22px, 2.2vw, 28px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.2; }
+.q1-q { font-size: 16px; line-height: 1.55; }
+.q1-more { font-weight: 500; }
+.q1-a { gap: 10px; margin-top: 12px; }
+.q1-b { min-height: 50px; padding: 0 22px; border-radius: 999px; font-weight: 600; background: rgba(255,255,255,0.04); border: 1px solid var(--hair-strong); box-shadow: var(--inner); transition: border-color 0.2s, background-color 0.2s; }
+.q1-b:hover, .q1-b:focus-visible { border-color: rgba(246, 202, 24, 0.75); background: rgba(246, 202, 24, 0.08); }
+
+/* ---------- Layered surfaces in place of flat boxes ---------- */
+.stat, .how-card, .vid, .area-ask, .row, .chip, .about-photo, .phone-shot img { border-radius: var(--r-card); }
+.chip, .row { border-radius: 999px; }
+.stat { background: var(--surface); border: 1px solid var(--hair); box-shadow: var(--inner), var(--soft); padding: 30px 28px; }
+.num { font-weight: 800; letter-spacing: -0.045em; text-shadow: none; }
+.lbl { font-size: 17px; }
+.how-card { background: var(--surface); border: 1px solid var(--hair); box-shadow: var(--inner), var(--soft); }
+.how-card h3 { font-size: 23px; }
+.how-n { width: 44px; height: 44px; font-size: 20px; font-weight: 800; box-shadow: inset 0 1px 0 rgba(255,255,255,0.45); }
+.how-return-pill { background: rgba(16,16,22,0.9); border-width: 1.5px; font-weight: 600; box-shadow: var(--inner); }
+.vid { border: 1px solid var(--hair); box-shadow: var(--inner), var(--soft); }
+.vid-title { font-weight: 700; }
+.chip { background: var(--surface); border: 1px solid var(--hair); box-shadow: var(--inner); font-weight: 500; }
+.chip:hover { border-color: rgba(246, 202, 24, 0.6); transform: none; }
+.row { background: var(--surface); border: 1px solid var(--hair); box-shadow: var(--inner), var(--soft); font-weight: 600; }
+.area-ask { background: var(--surface-hi); border: 1px solid var(--hair-strong); border-left: 2px solid var(--yellow); box-shadow: var(--inner), var(--soft); padding: 24px 26px; }
+.area-ask .area-wa { border-color: var(--hair-strong); background: rgba(255,255,255,0.03); box-shadow: var(--inner); font-weight: 600; }
+.wa-big { background: linear-gradient(180deg, #FFD83A 0%, var(--yellow) 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), 0 1px 2px rgba(0,0,0,0.3); }
+.about-photo { box-shadow: var(--soft); border: 1px solid var(--hair); }
+.phone-shot img { border-radius: 28px; border: 8px solid #222229; box-shadow: var(--inner), 0 30px 70px -20px rgba(0,0,0,0.7); }
+
+/* The four area photos: cards with soft corners and a little air between them */
+.area-row { gap: 12px; padding: 0 max(24px, env(safe-area-inset-left, 0px)); max-width: 1440px; margin: 0 auto; }
+.area { border-radius: var(--r-card); box-shadow: var(--soft); }
+.area-tap { border-radius: var(--r-card); }
+.area.on { box-shadow: inset 0 0 0 2px var(--yellow), var(--soft); }
+.area b { font-weight: 700; }
+
+/* The thin layer: the words light one by one as they are read (MotionSites recipe 10, ScrollReveal values) */
+.lw, .lp p { font-weight: 700; letter-spacing: -0.03em; line-height: 1.12; }
+.sw { display: inline; }
+.js .lit .sw { opacity: 0.15; transition: opacity 0.18s linear; }
+
+/* Reveal: a soft blur and rise in place of a plain slide */
+.reveal { transform: translateY(20px); filter: blur(8px); transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out), filter 0.9s var(--ease-out); }
+.reveal.in { filter: none; }
+
+/* Headings arrive word by word: the words are wrapped by js/modern.js, the motion is Motion's */
+.bw { display: inline-block; will-change: transform, filter, opacity; }
+
+/* Press: a light spring for every button and card (CSS stand in when Motion is absent) */
+.press-ready { transform-origin: center; }
+
+/* ---------- Phone ---------- */
+@media (max-width: 1000px) {
+  .hero-in { grid-template-columns: 1fr; gap: 18px; padding-top: 104px; padding-bottom: 28px; }
+  .dial { width: min(330px, 82vw); }
+  .audit, .how, .areas, .videos, .about, .contact { padding: 96px 0; }
+  .area-row { gap: 10px; }
+}
+@media (max-width: 560px) {
+  body { font-size: 17px; }
+  .hero { align-items: flex-start; }
+  .hero-scrim { background:
+    linear-gradient(to bottom, rgba(13,13,17,0.66) 0%, rgba(13,13,17,0.46) 30%, rgba(13,13,17,0.12) 50%, rgba(13,13,17,0) 62%),
+    linear-gradient(to top, rgba(13,13,17,0.7) 0%, rgba(13,13,17,0) 14%); }
+  .hero-in { padding-top: 84px; padding-bottom: 12px; gap: 6px; }
+  .hero .eyebrow { margin-bottom: 10px; }
+  .hero h1 { font-size: 42px; line-height: 1.04; }
+  .lead { font-size: 19px; margin-top: 14px; }
+  .proof { font-size: 15px; margin-top: 12px; }
+  .hero .cta-row { margin-top: 18px; }
+  .hero .cta-row .btn { min-height: 50px; padding: 0 20px; }
+  .dial { width: min(322px, 82vw); margin-top: 18px; }
+  .dial-mid { padding-top: 86px; }
+  .dial-small { font-size: 16px; }
+  .dial-big { font-size: 36px; }
+  .dial-tag { font-size: 14px; padding: 5px 11px; }
+  .t1 { top: 2%; right: -6%; } .t2 { bottom: 2%; right: -6%; } .t3 { bottom: 2%; left: -6%; } .t4 { top: 2%; left: -6%; }
+  .q1-band { padding: 52px 0 64px; }
+  .q1 { padding: 22px 20px 20px; }
+  .q1-more { order: 0; }
+  .q1-q { order: 0; }
+  .audit, .how, .areas, .videos, .about, .contact { padding: 84px 0; }
+  .services { padding: 84px 0; }
+  .area-row { padding: 0 18px; }
+  .stat { padding: 22px 20px; }
+}
+
+/* round seven (November 21, 2026, the owner: "this is not 2005, this is November 2026"): the reduced motion block here is removed; the page moves the same on every phone */
+
+/* A short phone (about 667 px tall): the clock still fits whole on the first screen */
+@media (max-width: 560px) and (max-height: 720px) {
+  .hero-in { padding-top: 76px; }
+  .hero h1 { font-size: 36px; }
+  .lead { font-size: 17px; margin-top: 10px; }
+  .proof { font-size: 14px; margin-top: 10px; }
+  .hero .cta-row { margin-top: 14px; }
+  .dial { width: 236px; margin-top: 10px; }
+  .dial-mid { padding-top: 62px; }
+  .dial-big { font-size: 28px; }
+  .dial-small { font-size: 14px; }
+  .t1, .t2 { right: -16%; } .t3, .t4 { left: -16%; }
+}
+
+/* Fixes after the final test, November 19, 2026. Each line traces to one numbered fix in
+   00_Knowledge/Growth/work/jobs/site_four_builds_Nov19/fixes_after_test/FIXES.md; no words were changed. */
+/* Fix 1: a soft dark band behind the menu while the page is at the top, on a computer, so the menu reads at 4.5 to 1 or more over the sky */
+@media (min-width: 1001px) {
+  .nav::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 130px; z-index: -1; pointer-events: none; background: linear-gradient(to bottom, rgba(13, 13, 17, 0.7), rgba(13, 13, 17, 0.55) 50px, rgba(13, 13, 17, 0) 130px); transition: opacity 0.3s; }
+  .nav.solid::before { opacity: 0; }
+}
+/* Fix 2: on a phone the shade under the first screen words reaches a little lower, so the proof line reads at 4.5 to 1 or more over the sky (its colour alone could not: white measured 4.2 to 1) */
+@media (max-width: 560px) {
+  .hero-scrim { background:
+    linear-gradient(to bottom, rgba(13,13,17,0.66) 0%, rgba(13,13,17,0.56) 40%, rgba(13,13,17,0.12) 52%, rgba(13,13,17,0) 62%),
+    linear-gradient(to top, rgba(13,13,17,0.7) 0%, rgba(13,13,17,0) 14%); }
+}
+/* Fix 3: on a phone the thin layer drawing (560 units wide, drawn about 330 to 360 px) sets its labels at 25 units, 14 px or more down to a 360 px phone, and the photo credits at 14 px */
+@media (max-width: 599.98px) {
+  .lp .silo-name, .lp .thin-text, .lp .date-tag text { font-size: 25px; }
+  .credits { font-size: 14px; }
+}
+/* Fix 5: the internal version line stays in the page source but is not shown */
+#version { display: none; }

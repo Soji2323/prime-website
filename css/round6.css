@@ -1,0 +1,79 @@
+/* Round six (November 20, 2026, round6/BRIEF.md): the page in the owner's eleven part order, with the services rewrite
+   woven in. What it styles: the area tap's office lines and the department paragraphs under the four pictures (part 2),
+   the weekly check line and paragraphs (part 3), the three groups of part 9, and the slim films row (part 10).
+   No colour, font, radius or shadow is new: the chips, the small yellow label (.offer-size), the area panel (.area-ask,
+   .area-wa), the soft words #E2DED8, the mute ink and the hairline are the page's own (css/v2.css, css/modern.css,
+   css/layer.css). What calls it: index.html, after css/sound.css. */
+
+/* ---------- part 2: the four areas ---------- */
+.area-ask .area-do-line { margin: 0; font-size: 17px; line-height: 1.5; color: #E2DED8; }
+.area-desk { display: none; }
+@media (min-width: 1001px) {
+  /* each department's paragraph under its own picture, on the same grid as the pictures (css/modern.css .area-row) */
+  .area-desk { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding: 0 max(24px, env(safe-area-inset-left, 0px)); max-width: 1440px; margin: 22px auto 0; position: relative; z-index: 1; }
+  .area-desk p { margin: 0; padding: 0 6px; font-size: 16px; line-height: 1.6; color: #E2DED8; text-wrap: pretty; }
+}
+
+/* ---------- part 3: the weekly check ---------- */
+.how-intro.how-list { margin: 52px 0 0; max-width: 34ch; color: #E2DED8; }
+.how-week { display: none; }
+@media (min-width: 1001px) {
+  .how-intro.how-list { display: none; }
+  .how-week { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 44px; }
+  .how-week p { margin: 0; font-size: 18px; line-height: 1.6; color: #E2DED8; text-wrap: pretty; }
+}
+
+/* ---------- part 9: everything else you call us for ---------- */
+.services-in.svc-in { grid-template-columns: 1fr; gap: 32px; align-items: start; }
+.svc-phone { display: flex; flex-direction: column; gap: 30px; }
+.svc-desk { display: none; }
+.svc-group { display: flex; flex-direction: column; gap: 12px; }
+.svc-label { margin: 0; }
+.svc-list { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.svc { max-width: 100%; }
+.svc-sum { list-style: none; cursor: pointer; gap: 12px; padding: 10px 18px; line-height: 1.3; user-select: none; -webkit-tap-highlight-color: transparent; }
+.svc-sum::-webkit-details-marker { display: none; }
+/* a small chevron says the chip opens; it turns and takes the yellow when open */
+.svc-sum::after { content: ""; flex: none; width: 8px; height: 8px; margin: -4px 2px 0 0; border-right: 2px solid var(--mute); border-bottom: 2px solid var(--mute); transform: rotate(45deg); transition: transform 0.2s var(--ease-out), border-color 0.2s; }
+.svc[open] > .svc-sum { border-color: rgba(246, 202, 24, 0.6); }
+.svc[open] > .svc-sum::after { transform: translateY(4px) rotate(-135deg); border-color: var(--yellow); }
+.svc-sum:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
+.svc-open.area-ask { margin-top: 8px; padding: 18px 20px; gap: 14px; }
+.svc-open p { margin: 0; font-size: 17px; line-height: 1.5; color: #E2DED8; }
+.svc-open ul { color: #E2DED8; font-size: 16px; }
+.svc-open .area-wa { align-self: flex-start; }
+.svc-lessons { gap: 8px; }
+
+@media (min-width: 1001px) {
+  .svc-phone { display: none; }
+  .svc-desk { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; align-items: start; }
+  .svc-col { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+  /* the seven moments take the widest column, two to a row */
+  .svc-col-moments { display: block; }
+  .svc-col-moments > .svc-label, .svc-col-moments > .svc-sub { column-span: all; margin-bottom: 18px; }
+  .svc-col-moments > .svc-item { break-inside: avoid; margin-bottom: 22px; }
+  .svc-sub { margin: 0; color: var(--mute); font-size: 17px; line-height: 1.5; }
+  .svc-item { display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid var(--hair); min-width: 0; }
+  .svc-item p, .svc-col > p { margin: 0; font-size: 16px; line-height: 1.6; color: #E2DED8; text-wrap: pretty; }
+  .svc-item ul { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 4px; font-size: 16px; line-height: 1.5; color: #E2DED8; }
+  .svc-name { align-self: flex-start; padding: 10px 18px; line-height: 1.3; }
+}
+
+/* ---------- part 10: the films row, the smallest thumbnails that still read ---------- */
+.videos.films-row { padding: 72px 0; }
+.films-row h2 { margin-bottom: 22px; }
+.films-row .vid-grid.v5.v6 { display: flex; gap: 10px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 2px; }
+.films-row .vid-grid::-webkit-scrollbar { display: none; }
+.films-row .vid-grid.v6 > .vid { flex: 0 0 136px; aspect-ratio: 4 / 5; grid-column: auto; scroll-snap-align: start; }
+.films-row .vid-play { top: 40%; width: 40px; height: 40px; margin: -20px 0 0 -20px; }
+.films-row .vid-play::before { margin-left: 4px; border-left-width: 13px; border-top-width: 8px; border-bottom-width: 8px; }
+.films-row .vid-text { left: 10px; right: 10px; bottom: 10px; gap: 0; }
+.films-row .vid-title { font-size: 15px; line-height: 1.2; }
+.films-row .vid-sub { display: none; }
+@media (min-width: 1001px) { .films-row .vid-grid.v6 > .vid { flex-basis: 168px; } .films-row .vid-grid.v5.v6 { overflow: visible; } }
+@media (max-width: 560px) { .videos.films-row { padding: 64px 0; } }
+
+/* ---------- the joins where two dark sections now meet (round six order) ----------
+   One hairline in the page's own hair colour across the width, as the footer already has (css/home.css .foot), so each
+   join reads as a deliberate edge and never as one long dark slab. Joins with a photo or a shift of ground keep theirs. */
+.q1-band + .areas, .how + .story, .offers + .advisory, .services + .videos, .services ~ .contact { border-top: 1px solid var(--hair); }

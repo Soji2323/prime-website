@@ -1,0 +1,55 @@
+/* Round seven of the thin layer build (November 21, 2026, the owner's corrections; round7/BRIEF.md in the job folder
+   00_Knowledge/Growth/work/jobs/site_today_layer_offers_Nov20).
+   What it does: (1) writes "Compliance & Safety" in the page's dark ink inside the yellow band of the thin layer drawing,
+   so the band is never empty; (2) sets the drawing's caption, the two lines of the old separate block, under the drawing
+   inside its card; (3) on a computer puts the result phone in the middle column, so the beat reads left to right as it
+   reads down a phone: the sentence, the result phone, the drawing with its caption; (4) the warm Diwali glow: each part
+   still comes on in turn, then settles to a clearly visible warm light that stays lit and breathes slowly and softly, a
+   cycle of 4 s, while the part is on screen. The glow is a drop shadow or a text shadow in the page's yellow ramp
+   (#F6CA18, #FFD65A, #FFE27A): nothing is blurred, the words stay sharp, and it never flashes.
+   It runs the same whatever the phone's Reduce Motion setting (the owner: "this is not 2005, this is November 2026").
+   What it reads: nothing outside this build. What calls it: index.html, after css/round6.css. With scripts off the band's
+   words and the caption show; the glow needs js/lamps.js. */
+
+/* ---------- 1. the band's words ---------- */
+.art-svg .d-band-text { font-size: 30px; font-weight: 800; letter-spacing: 0.01em; fill: var(--ink); }
+@media (max-width: 560px) { .art-svg .d-band-text { font-size: 32px; } }
+
+/* ---------- 2. the caption under the drawing ---------- */
+.d-cap { margin: 18px 0 0; padding: 0 4px; display: flex; flex-direction: column; gap: 10px; text-align: center; }
+.d-cap p { margin: 0 auto; max-width: 36ch; text-wrap: balance; }
+.d-cap .d-cap-s { font-size: 18px; line-height: 1.45; font-weight: 600; color: var(--fg); }
+.d-cap .backup { font-size: 17px; line-height: 1.55; color: #E7E3DD; }
+@media (max-width: 560px) { .d-cap { margin-top: 14px; gap: 8px; } .d-cap .d-cap-s { font-size: 17px; } .d-cap .backup { font-size: 16px; } }
+
+/* ---------- 3. a computer: sentence, phone, drawing, left to right ---------- */
+@media (min-width: 1001px) { .d-grid { grid-template-columns: 0.8fr 0.66fr 1.2fr; } }
+
+/* ---------- 4. the warm Diwali glow: comes on, stays lit, breathes ---------- */
+@keyframes lampBox7 {
+  0% { filter: drop-shadow(0 0 0 rgba(246, 202, 24, 0)); }
+  35% { filter: drop-shadow(0 0 22px rgba(255, 226, 122, 0.85)); }
+  100% { filter: drop-shadow(0 0 14px rgba(246, 202, 24, 0.6)); }
+}
+@keyframes lampBreathBox {
+  from { filter: drop-shadow(0 0 14px rgba(246, 202, 24, 0.6)); }
+  to { filter: drop-shadow(0 0 20px rgba(255, 214, 90, 0.78)); }
+}
+@keyframes lampText7 {
+  0% { text-shadow: 0 0 0 rgba(246, 202, 24, 0), 0 2px 18px rgba(13, 13, 17, 0.55); }
+  35% { text-shadow: 0 0 20px rgba(255, 226, 122, 0.8), 0 2px 18px rgba(13, 13, 17, 0.55); }
+  100% { text-shadow: 0 0 14px rgba(246, 202, 24, 0.55), 0 2px 18px rgba(13, 13, 17, 0.55); }
+}
+@keyframes lampBreathText {
+  from { text-shadow: 0 0 14px rgba(246, 202, 24, 0.55), 0 2px 18px rgba(13, 13, 17, 0.55); }
+  to { text-shadow: 0 0 20px rgba(255, 214, 90, 0.7), 0 2px 18px rgba(13, 13, 17, 0.55); }
+}
+.lamp-box.lamp-on {
+  animation: lampBox7 2.1s cubic-bezier(0.16, 1, 0.3, 1) var(--lamp-d, 0s) both,
+             lampBreathBox 2s ease-in-out calc(var(--lamp-d, 0s) + 2.1s) infinite alternate;
+}
+.lamp-text.lamp-on {
+  animation: lampText7 2.1s cubic-bezier(0.16, 1, 0.3, 1) var(--lamp-d, 0s) both,
+             lampBreathText 2s ease-in-out calc(var(--lamp-d, 0s) + 2.1s) infinite alternate;
+}
+.lamp-box.lamp-on.lamp-away, .lamp-text.lamp-on.lamp-away { animation-play-state: running, paused; }

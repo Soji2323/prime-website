@@ -1,0 +1,81 @@
+/* Round four of the thin layer build (November 20, 2026): the one clean clock, and the Fail line made plain to see.
+   What it does: (1) the first screen clock is fx/clock.svg, a vector drawing that is sharp at every size (no pixel art,
+   no soft focus as it arrives): the yellow ring of the "Made of today" dial at the same size, the sixty minutes marked
+   as on a normal clock, one hand resting where the yellow stops short of the full circle, eight small marks along the
+   yellow, and under the hand the words "under 1 min, 8 questions". Nothing on it moves after it has arrived.
+   (2) "Fail to inspect, expect to fail." (beat c): both "fail" words stand in the red of our truck (Soji, Nov 20: "red
+   truckers easily relate to danger"), the truck's own hue, 356 degrees, lifted in lightness only so it reads on the
+   dark beat at 4.6 to 1, no new colour brought in;
+   on a phone the line is a four line poster, so "Fail to" sits over "to fail." and "inspect," over "expect"; the letters
+   type in one at a time (js/fail_line.js) and a stroke in the same red draws once under the last word.
+   What it reads: fx/clock.svg. What calls it: index.html, after css/round3.css. With scripts off the clock and the
+   whole line stand finished and still (round seven: Reduce Motion no longer stills them). */
+
+/* ---------- 1. the clock ---------- */
+.dial.crisp .dial-face { position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+  filter: drop-shadow(0 12px 28px rgba(13, 13, 17, 0.5)); }
+.dial.crisp .dial-mid { inset: 55.5% 0 auto 0; padding-top: 0; justify-content: flex-start; z-index: 2; gap: 1px; }
+.dial.crisp .dial-mid::before { content: none; }
+.dial.crisp .dial-small { font-size: 17px; line-height: 1.15; color: #EFECE7; text-shadow: none; }
+.dial.crisp .dial-big { font-size: 42px; line-height: 1; font-weight: 800; letter-spacing: -0.035em; text-shadow: none; }
+.dial-q { font-size: 15px; line-height: 1.3; font-weight: 600; color: var(--yellow); letter-spacing: 0.01em; margin-top: 3px; }
+.dial.crisp .dial-tag { z-index: 3; backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(13, 13, 17, 0.82); }
+@media (max-width: 560px) {
+  .dial.crisp .dial-small { font-size: 15px; }
+  .dial.crisp .dial-big { font-size: 34px; }
+  .dial-q { font-size: 14px; }
+}
+
+/* ---------- 2. the Fail line ---------- */
+:root { --truck-red: #D24750; }
+.still-line { max-width: none; }
+.fl-l { white-space: nowrap; }
+.fl-key { color: var(--truck-red); }
+.fl-end { position: relative; display: inline-block; }
+.fl-end::after { content: ""; position: absolute; left: 0.02em; right: 0.06em; bottom: -0.1em; height: 0.085em; border-radius: 0.05em;
+  background: var(--truck-red); transform: rotate(-1.2deg) scaleX(1); transform-origin: 0 50%; }
+/* wide screens: two lines, the clause break after the comma */
+@media (min-width: 761px) {
+  .still-line { font-size: clamp(64px, 7.6vw, 124px); line-height: 1.04; }
+  .fl-br::before { content: "\A"; white-space: pre; }
+}
+/* a phone: the four line poster, each line as wide as the screen allows */
+@media (max-width: 760px) {
+  .beat-c { min-height: 88vh; min-height: 88svh; }
+  .still-line { font-size: min(22.4vw, 108px); line-height: 0.95; letter-spacing: -0.05em; }
+  .fl-l { display: block; }
+}
+/* typing (js/fail_line.js adds .fl-armed, then .in on each letter, then .fl-done) */
+.fl-c { transition: none; }
+.fl-armed .fl-c { opacity: 0; }
+.fl-armed .fl-c.in { opacity: 1; }
+.fl-armed .fl-c.cur { box-shadow: 0.07em 0 0 var(--truck-red); }
+.fl-armed .fl-end::after { transform: rotate(-1.2deg) scaleX(0); }
+.fl-armed.fl-done .fl-end::after { transform: rotate(-1.2deg) scaleX(1); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+/* round seven (November 21, 2026, the owner: "this is not 2005, this is November 2026"): the reduced motion block here is removed; the page moves the same on every phone */
+
+/* ---------- 3. the offers, once (round four, "its all repeating") ---------- one WhatsApp and one call under the three
+   cards, in place of a pair on each card; a card is tapped to light it (js/layer.js). */
+.offer[role="button"] { cursor: pointer; }
+.offer[role="button"]:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
+.offers-acts { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; margin-top: 30px; }
+.offers-ask { width: 100%; margin: 0 0 4px; text-align: center; font-size: 17px; line-height: 1.5; color: #E2DED8; }
+.offers-acts .offer-wa, .offers-acts .offer-call { min-width: 260px; }
+@media (max-width: 560px) { .offers-acts .offer-wa, .offers-acts .offer-call { width: 100%; min-width: 0; } }
+
+/* ---------- 4. the repeat cuts (November 20, 2026, Soji: "do the QA Goldgate, its all repeating"; the lead's ruling
+   round4/RULING_repeats_and_review.md) ----------
+   (a) review note 3: on one column the WhatsApp and call sit directly under the lit card (js/layer.js); the ask line
+   above them is then not needed, since the owner has already tapped.
+   (b) review note 7: the "expired" tag in beats a and b takes the truck's own red for its rim and word, on the beat's
+   dark ground, so the page has one red (4.6 to 1).
+   (c) review note 6: the computer's scroll bar thumb draws the truck from fx/scroll_truck_2x.webp, four screen pixels
+   to an art pixel, shown at 70 by 84, so it is exact at one and at two screen pixels a point and never soft.
+   (d) gate row 18: the "Your office fills the gap" pill is gone; the dashed return line stands alone. */
+.offers-acts.under-card { margin-top: 0; }
+.offers-acts.under-card .offers-ask { display: none; }
+.date-tag rect { fill: #060608; stroke: var(--truck-red); }
+.date-tag text { fill: var(--truck-red); }
+::-webkit-scrollbar-thumb { background-image: url("../fx/scroll_truck_2x.webp"); background-size: 70px 84px; }
+/* (e) gate row 9: the top slice keeps only the small phone drawing, so it stands in the middle of its slice. */
+.slab-top { justify-content: center; }

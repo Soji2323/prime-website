@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>if(/^#(start|q1-[0-9])$/.test(location.hash))document.documentElement.classList.add("skip-landing")</script>
+<title>A clear answer in under a minute | Prime Compliance</title>
+<meta name="description" content="Eight questions, four areas, one clear answer in under a minute.">
+<meta name="theme-color" content="#0D0D11">
+<link rel="preload" href="fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="img/hero_rockies_highway_1600.webp" imagesrcset="img/hero_rockies_highway_800.webp 800w, img/hero_rockies_highway_1600.webp 1600w" imagesizes="100vw">
+<link rel="stylesheet" href="css/e.css">
+<link rel="stylesheet" href="css/modern.css">
+<link rel="stylesheet" href="css/crisp_clock.css">
+</head>
+<body>
+<main id="page">
+
+  <section id="landing" class="screen landing">
+    <div class="hero-photo" aria-hidden="true">
+      <img class="hero-img" src="img/hero_rockies_highway_1600.webp" srcset="img/hero_rockies_highway_800.webp 800w, img/hero_rockies_highway_1600.webp 1600w" sizes="100vw" alt="" fetchpriority="high">
+    </div>
+    <div class="hero-scrim" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <img class="logo" src="logo/Prime_logo_on_black_DERIVED.svg" alt="Prime" width="150" height="58">
+    </header>
+
+    <div class="hero">
+      <div class="hero-clock" id="clockHero" role="img" aria-label="A clock: eight questions, under one minute"><div class="cc-mid" aria-hidden="true"><span class="cc-big">8</span><span class="cc-q">questions</span></div></div>
+      <h1 class="display">a clear answer in under a minute.</h1>
+      <button class="start" id="startBtn" type="button">Start the check</button>
+    </div>
+  </section>
+
+  <section id="check" class="screen check" hidden>
+    <div class="check-bg" id="checkBg" aria-hidden="true">
+      <img data-area="0" src="../photos/company_1600.webp" srcset="../photos/company_800.webp 800w, ../photos/company_1600.webp 1600w" sizes="100vw" alt="" loading="lazy" decoding="async">
+      <img data-area="1" src="../photos/drivers_1600.webp" srcset="../photos/drivers_800.webp 800w, ../photos/drivers_1600.webp 1600w" sizes="100vw" alt="" loading="lazy" decoding="async">
+      <img data-area="2" src="../photos/equipment_1600.webp" srcset="../photos/equipment_800.webp 800w, ../photos/equipment_1600.webp 1600w" sizes="100vw" alt="" loading="lazy" decoding="async">
+      <img data-area="3" src="../photos/compliance_1600.webp" srcset="../photos/compliance_800.webp 800w, ../photos/compliance_1600.webp 1600w" sizes="100vw" alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="check-scrim" aria-hidden="true"></div>
+
+    <div class="wrap">
+      <div class="qtop">
+        <div class="progress" aria-hidden="true"><i id="progressFill"></i></div>
+        <p class="qcount" id="qcount" aria-live="polite">Question 1 of 8</p>
+        <div class="qclock" id="clockQ"></div>
+      </div>
+      <div class="qcard glass">
+        <p class="qarea" id="qarea"></p>
+        <h1 class="qtitle" id="qtitle" tabindex="-1"></h1>
+        <p class="qtext" id="qtext"></p>
+        <button class="qmore" id="qmore" type="button">Read the full question</button>
+      </div>
+      <div class="answers" id="answers" role="group" aria-labelledby="qtitle"></div>
+    </div>
+  </section>
+
+  <section id="result" class="screen result" hidden>
+    <div class="result-aurora" aria-hidden="true">
+      <img class="aurora-img" src="img/night_aurora_1600.webp" srcset="img/night_aurora_800.webp 800w, img/night_aurora_1600.webp 1600w" sizes="100vw" alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="result-scrim" aria-hidden="true"></div>
+
+    <div class="wrap">
+      <div class="result-head glass">
+        <div class="ring" id="ring"></div>
+        <div class="rclock" id="clockResult"></div>
+      </div>
+      <h1 class="band" id="band"></h1>
+      <p class="weak" id="weak"></p>
+
+      <section class="ladder glass" id="ladder" aria-label="Your growth ladder">
+        <div class="steps" id="ladderSteps"></div>
+        <p class="ladder-line" id="ladderLine"></p>
+      </section>
+
+      <section class="contact glass" id="contact" aria-label="Get your full result">
+        <h2 class="contact-title">Get your full result and a free consultation.</h2>
+        <form id="contactForm" novalidate>
+          <div class="field">
+            <input id="contactField" name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" placeholder="Your WhatsApp number" aria-label="Your WhatsApp number">
+          </div>
+          <button type="button" class="swap" id="swapField">Use email instead</button>
+          <label class="consent">
+            <input type="checkbox" id="consent">
+            <span>Yes, you may contact me here.</span>
+          </label>
+          <button type="submit" class="send" id="sendBtn" disabled>Send it to me</button>
+          <p class="sent" id="sent" role="status" hidden>WhatsApp is opening. Press send there.</p>
+        </form>
+      </section>
+
+      <a class="wa" id="waBtn" href="https://wa.me/17802091000" target="_blank" rel="noopener">
+        <span class="wa-en">WhatsApp us</span>
+        <span class="wa-pa">ਵਟਸਐਪ ਕਰੋ</span>
+      </a>
+    </div>
+
+    <section class="peace peace-rows" id="peace" aria-label="Call us or visit our site">
+      <div class="wrap peace-wrap">
+        <a class="row" id="peaceCall" href="tel:+17802091000">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h3l1.4 4-2 1.5a12.6 12.6 0 0 0 6.1 6.1l1.5-2 4 1.4v3a2 2 0 0 1-2.2 2A17.5 17.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"/></g></svg>
+          <span><b>Call</b> 780-209-1000</span>
+        </a>
+        <a class="row" id="peaceSite" href="https://theprimecompliance.com" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.4 2.3 3.5 5.1 3.5 8.5s-1.1 6.2-3.5 8.5c-2.4-2.3-3.5-5.1-3.5-8.5s1.1-6.2 3.5-8.5z"/></g></svg>
+          <span><b>theprimecompliance.com</b></span>
+        </a>
+      </div>
+    </section>
+  </section>
+
+</main>
+<footer class="credits">Photos: Jack Borno (CC BY-SA 3.0), Joli Rumi (CC BY-SA 4.0), Chris Woodrich (CC BY-SA 4.0), Janusz Sobolewski (CC BY 2.0), WherezJeff (CC BY 2.0), WinterforceMedia and U.S. CBP (public domain).</footer>
+<p class="credits" id="version">Look E, November 19, 2026</p>
+<script>window.AUDIT_THEME = { ringDur: 500, staggerBars: true, settle: true };</script>
+<script>window.AUDIT_E2 = true;</script>
+<script src="config.js"></script>
+<script src="engine/check.data.js"></script>
+<script src="engine/clock.js"></script>
+<script src="engine/pixel.js"></script>
+<script src="engine/charts.js"></script>
+<script src="engine/audit.js"></script>
+<script src="js/wa_number.js"></script>
+<script src="js/crisp_clock.js"></script>
+<script src="js/start_hash.js"></script>
+</body>
+</html>

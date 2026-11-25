@@ -1,0 +1,37 @@
+/* The quiet music button (round five, November 20, 2026).
+   What it does: styles one small round speaker button, fixed at the bottom right corner, above the band where the small
+   truck rides and clear of the scroll bar truck at the right edge and the WhatsApp pill at the top. Off at first; when the
+   music plays the speaker shows its waves and a thin yellow ring. Glass only over a photo, one hairline, one soft shadow,
+   as in the design system (design-system/prime-home-v6/MASTER.md).
+   What it reads: the page's colour tokens from css/modern.css (--fg, --yellow). What it writes: nothing.
+   What calls it: index.html, one link after css/round5.css. js/sound.js toggles aria-pressed on the button. */
+.snd {
+  position: fixed; z-index: 16;
+  right: calc(22px + env(safe-area-inset-right, 0px));
+  bottom: calc(74px + env(safe-area-inset-bottom, 0px)); /* the riding truck is about 59 px tall on a phone, 6 px up */
+  width: 44px; height: 44px; margin: 0; padding: 0; border-radius: 999px;
+  display: grid; place-items: center; cursor: pointer;
+  color: var(--fg, #F5F3EF);
+  background: rgba(16, 16, 22, 0.62);
+  -webkit-backdrop-filter: blur(10px) saturate(1.2); backdrop-filter: blur(10px) saturate(1.2);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 8px 24px -10px rgba(0, 0, 0, 0.7);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (min-width: 1001px) { .snd { right: calc(28px + env(safe-area-inset-right, 0px)); bottom: 96px; } } /* the truck is 78 px tall here */
+.snd svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.snd .snd-body { fill: currentColor; stroke: none; }
+.snd .snd-wave { opacity: 0; transition: opacity 0.4s ease; }
+.snd .snd-off { opacity: 0.85; transition: opacity 0.3s ease; }
+.snd[aria-pressed="true"] { border-color: rgba(246, 202, 24, 0.75); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 0 0 3px rgba(246, 202, 24, 0.14), 0 8px 24px -10px rgba(0, 0, 0, 0.7); }
+.snd[aria-pressed="true"] .snd-wave { opacity: 1; }
+.snd[aria-pressed="true"] .snd-off { opacity: 0; }
+.snd:hover { background: rgba(22, 22, 30, 0.78); }
+.snd:focus { outline: none; }
+.snd:focus-visible { outline: 2px solid var(--yellow, #F6CA18); outline-offset: 3px; }
+/* a visitor who chose the music on an earlier visit sees one soft yellow dot: a tap brings it back, nothing starts alone */
+.snd.was-on::after { content: ""; position: absolute; top: 5px; right: 5px; width: 7px; height: 7px; border-radius: 50%; background: var(--yellow, #F6CA18); }
+.snd[aria-pressed="true"]::after { display: none; }
+/* round seven (November 21, 2026, the owner: "this is not 2005, this is November 2026"): the reduced motion block here is removed; the page moves the same on every phone */
+@media print { .snd { display: none; } }
